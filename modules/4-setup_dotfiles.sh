@@ -4,10 +4,10 @@ if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
 
-ROBOT_SETUP_DIR=$HOME/.dancer-robot-setup
-ROBOT_SETUP_REPO=git@github.com:ZJUDancer/dancer-robot-setup.git
+ROBOT_SETUP_DIR=$HOME/.env-setup
+ROBOT_SETUP_REPO=git@github.com:corenel/env-setup.git
 NVIM_SETUP_REPO=git@github.com:corenel/ysvim.git
-DOTFILE_BASEDIR=${ROBOT_SETUP_DIR}/dotfiles/common
+DOTFILE_BASEDIR=${ROBOT_SETUP_DIR}/dotfiles
 
 symlink() {
   src=$1
@@ -50,7 +50,7 @@ link_dotfiles() {
 
 link_common_dotfiles() {
   # create symbol links from $basedir to $HOME
-  pushd ${DOTFILE_BASEDIR}
+  pushd ${DOTFILE_BASEDIR}/common
   status "Creating symlinks..."
   for path in .*; do
     case ${path} in
@@ -69,8 +69,8 @@ link_common_dotfiles() {
   cp -v "$DOTFILE_BASEDIR/.gitignore.example" "$HOME/.gitignore"
 
   # setup ssh key
-  cp -v -r "$DOTFILE_BASEDIR/.ssh" "$HOME/"
-  sudo chmod 0700 $HOME/.ssh/id_rsa
+  # cp -v -r "$DOTFILE_BASEDIR/.ssh" "$HOME/"
+  # sudo chmod 0700 $HOME/.ssh/id_rsa
 }
 
 link_linux_dotfiles() {
