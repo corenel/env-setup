@@ -4,6 +4,10 @@ if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
 
+if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
+  source include/system_variables.sh
+fi
+
 uninstall_unity_scope() {
   warning "Note:  to remove online search (wikipedia, amazon, ect.)"
   warning "       go to 'Security & Privacy' settings -> Search tab"

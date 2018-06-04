@@ -4,6 +4,10 @@ if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
 
+if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
+  source include/system_variables.sh
+fi
+
 add_ppa_repo() {
   sudo add-apt-repository -y ppa:neovim-ppa/stable
   sudo add-apt-repository -y ppa:jonathonf/python-3.6
@@ -144,7 +148,7 @@ install_homebrew_casks() {
     hammerspoon iina karabiner-elements kext-utility skim \
     vlc vlcstreamer real-vnc vnc-viewer xld intel-power-gadget \
     android-file-transfer typora aria2gui iterm2 xquartz maciasl mounty \
-    xamarin-jdk android-sdk \
+    xamarin-jdk android-sdk
   # mactex surge clover-configurator\
 }
 
@@ -155,7 +159,7 @@ install_homebrew_fonts() {
     font-sourcecodepro-nerd-font font-sourcecodepro-nerd-font-mono \
     font-fira-code font-firacode-nerd-font font-firamono-nerd-font \
     font-meslo-for-powerline font-meslo-nerd-font font-meslo-nerd-font-mono \
-    font-hack-nerd-font \
+    font-hack-nerd-font
 }
 
 case $OS_TYPE in
@@ -177,5 +181,5 @@ case $OS_TYPE in
     confirm install_oh_my_zsh "Install Oh-My-Zsh"
     ;;
   *)
-    echo "OS $OS_TYPE is not supported"
+    error "OS $OS_TYPE is not supported"
 esac

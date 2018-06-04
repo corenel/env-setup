@@ -5,7 +5,6 @@ if [ -z $COMMON_SOURCED ]; then
 fi
 
 if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
-
   source include/system_variables.sh
 fi
 
