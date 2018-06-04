@@ -9,6 +9,7 @@ if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
 fi
 
 add_ppa_repo() {
+  sudo apt-get install software-properties-common
   sudo add-apt-repository -y ppa:neovim-ppa/stable
   sudo add-apt-repository -y ppa:jonathonf/python-3.6
   sudo add-apt-repository -y ppa:pi-rho/dev
@@ -20,36 +21,19 @@ install_utils() {
   sudo apt-get install -y --allow-unauthenticated \
     build-essential openssh-server wireless-tools git \
     wget zsh htop vim curl cmake ccache clang autojump \
-    xclip xsel neovim supervisor \
-    tmux-next neovim
+    xclip xsel neovim supervisor
 }
 
 install_libs() {
   sudo apt-get install -y \
-    python3-dev python3-pip python-dev python-pip \
-    libavcodec-dev libswscale-dev libx264-dev libprotobuf-dev protobuf-compiler \
-    libzmq3-dev libzmqpp-dev libgflags-dev qt5-default libgstreamer1.0-dev \
-    libjpeg-turbo8-dev gstreamer1.0-plugins-* libgstreamer-plugins-bad1.0-dev \
-    libeigen3-dev libqt5qml5 qtdeclarative5-dev
+    python3-dev python3-pip python-dev python-pip
 }
 
 install_python_pkgs() {
-  case $OS_TYPE in
-    Linux*)
-      sudo pip install -U pip
-      sudo pip install -r requiremnts.txt
-      sudo pip3 install -U pip
-      sudo pip3 install -r requiremnts.txt
-      ;;
-    Darwin*)
-      pip install -U pip
-      pip install -r requiremnts.txt
-      pip3 install -U pip
-      pip3 install -r requiremnts.txt
-      ;;
-    *)
-      ;;
-  esac
+  pip install -U pip
+  pip install -r requiremnts.txt
+  pip3 install -U pip
+  pip3 install -r requiremnts.txt
 }
 
 install_nerd_fonts() {
@@ -171,7 +155,7 @@ case $OS_TYPE in
     confirm install_oh_my_zsh "Install Oh-My-Zsh"
     confirm install_tightvnc "Install TightVNC"
     confirm install_nerd_fonts "Install Nerd fonts"
-    # confirm build_tmux "Build tmux"
+    confirm build_tmux "Build tmux"
     ;;
   Darwin*)
     confirm install_homebrew_pkgs "Install packages from HomeBrew"
