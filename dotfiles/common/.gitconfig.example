@@ -1,0 +1,8 @@
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore
+[push]
+	default = simple
+[user]
+	name = corenel
+	email = xxdsox@gmail.com

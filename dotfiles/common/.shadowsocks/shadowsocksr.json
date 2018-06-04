@@ -1,0 +1,18 @@
+{
+    "server":"",
+    "server_ipv6":"[::]",
+    "server_port":443,
+    "local_address":"0.0.0.0",
+    "local_port":1080,
+    "password":"",
+    "timeout":120,
+    "method":"aes-128-ctr",
+    "protocol":"auth_aes128_md5",
+    "protocol_param":"",
+    "obfs":"tls1.2_ticket_auth",
+    "obfs_param":"",
+    "redirect":"",
+    "dns_ipv6":false,
+    "fast_open":false,
+    "workers":1
+}

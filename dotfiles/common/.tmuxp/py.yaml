@@ -1,0 +1,23 @@
+---
+session_name: python-workspace
+start_directory: $HOME/Workspace
+windows:
+  - window_name: python-dev
+    layout: even-horizontal
+    panes:
+      - shell_command:
+          - tmux split-window -h -t 0.0
+          - tmux split-window -v -t 0.1 -p 20
+          - tmux select-pane -t 0.0
+          - tmux send-key -t 0.1 C-z "vim" Enter
+          - tmux send-key -t 0.2 C-z "reset" Enter
+          - vim
+        focus: true
+    focus: true
+  - window_name: python-debug
+    layout: tiled
+    panes:
+      - reset
+      - reset
+      - reset
+      - reset

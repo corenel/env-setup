@@ -1,0 +1,159 @@
+set number
+set incsearch hlsearch
+set ignorecase smartcase
+set clipboard=unnamed
+set scrolloff=5
+set showmode
+set surround
+
+" Map ; to : and save a million keystrokes
+nnoremap ; :
+
+" For any plugins that use this, make their keymappings use comma
+let mapleader = ' '
+let maplocalleader =' '
+
+" Useful macros I use the most
+" nmap \c :CLEAN<CR>:TEOL<CR>
+nmap \e :action OpenFile<CR>
+nmap \f :action ReformatCode<CR>
+" nmap \g :Gstatus<CR>
+nmap \h :nohlsearch<CR>
+" nmap \i vip:sort<CR>
+nmap \l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=2 concealcursor=niv"<CR>
+nmap \o :set paste!<CR>:set paste?<CR>
+" nmap \v :Startify<CR>
+" nmap \x :cclose<CR>
+" nmap \t :tabnew<CR>
+nmap \z :w<CR>:!open %<CR><CR>
+
+" Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with
+" line wrapping on, this can cause the cursor to actually skip a few lines on the screen because
+" it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down'
+" to mean the next line on the screen
+nmap j gj
+nmap k gk
+" nmap j <Plug>(accelerated_jk_gj_position)
+" nmap k <Plug>(accelerated_jk_gk_position)
+
+" Map jk to enter normal mode
+imap jk <Esc>
+
+" You don't know what you're missing if you don't use this.
+nmap <C-e> :e#<CR>
+
+" Move between open buffers.
+nmap <C-n> :action Forward<CR>
+nmap <C-p> :action Back<CR>
+
+" Move between open tabs.
+nmap <C-f> :action NextTab<CR>
+nmap <C-b> :action PreviousTab<CR>
+
+" Add new line without entering insert mode
+nmap <S-CR> O<Esc>
+nmap <CR> o<Esc>
+
+" Emacs-like bindings in insert mode
+imap <C-e> <C-o>$
+imap <C-a> <C-o>0
+
+" Emacs-like bindings in the command line from `:h emacs-keys`
+cnoremap <C-a>  <Home>
+cnoremap <C-b>  <Left>
+cnoremap <C-f>  <Right>
+cnoremap <C-d>  <Del>
+cnoremap <C-e>  <End>
+cnoremap <M-b>  <S-Left>
+cnoremap <M-f>  <S-Right>
+cnoremap <M-d>  <S-right><Delete>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>f <S-Right>
+cnoremap <Esc>d <S-right><Delete>
+cnoremap <C-g>  <C-c>
+
+" Use the space key to toggle folds
+nnoremap <space> za
+vnoremap <space> zf
+
+" Ctrl-a: Go to begin of line
+inoremap <C-a> <Home>
+
+" Ctrl-e: Go to end of line
+inoremap <C-e> <End>
+
+" Ctrl-[bf]: Move cursor left/right
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+
+" Ctrl-[hl]: Move left/right by word
+inoremap <C-h> <S-Left>
+inoremap <C-l> <S-Right>
+
+" Ctrl-[kj]: Move cursor up/down
+inoremap <C-k> <C-o>gk
+inoremap <C-j> <C-o>gj
+
+" Ctrl-[kj]: Move lines up/down
+" nnoremap <silent> <C-j> :m .+1<CR>==
+" nnoremap <silent> <C-k> :m .-2<CR>==
+" inoremap <silent> <C-j> <Esc>:m .+1<CR>==gi
+" inoremap <silent> <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <C-j> :m '>+1<CR>gv=gv
+vnoremap <silent> <C-k> :m '<-2<CR>gv=gv
+
+" Quickly moving between windows
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-k> <C-w>k
+nmap <C-j> <C-w>j
+
+" Won't work in visual mode (with vmap) for some reason.
+" Use default map of <c-/> for that.
+nmap gcc :action CommentByLineComment<CR>
+
+nnoremap Y y$
+nnoremap Q @q
+
+nnoremap <c-w><c-c> :action VimWindowClose<CR>
+
+nnoremap [c :action VcsShowPrevChangeMarker<CR>
+nnoremap ]c :action VcsShowNextChangeMarker<CR>
+
+nnoremap [d :action QuickImplementations<CR>
+nnoremap ]d :action QuickImplementations<CR>
+
+nnoremap ]e :action GotoNextError<CR>
+nnoremap [e :action GotoPreviousError<CR>
+
+nnoremap <leader>ff :action FindInPath<CR>
+nnoremap <leader>fu :action FindUsages<CR>
+nnoremap <leader>su :action ShowUsages<CR>
+nnoremap <leader>se :action ShowErrorDescription<CR>
+nnoremap <leader>sf :action FileStructurePopup<CR>
+nnoremap <leader>sv :source ~/.ideavimrc<CR>
+nnoremap <leader>sd :action QuickJavaDoc<CR>
+nnoremap <leader>cv :action ChangeView<CR>
+nnoremap <leader>bb :action ToggleLineBreakpoint<CR>
+nnoremap <leader>br :action ViewBreakpoints<CR>
+nnoremap <leader>ic :action InspectCode<CR>
+nnoremap <leader>oi :action OptimizeImports<CR>
+nnoremap <leader>re :action RenameElement<CR>
+nnoremap <leader>rf :action RenameFile<CR>
+nnoremap <leader>mv :action ActivateMavenProjectsToolWindow<CR>
+nnoremap <leader>dd :action Debug<CR>
+nnoremap <leader>dc :action ChooseDebugConfiguration<CR>
+nnoremap <leader>rr :action Run<CR>
+nnoremap <leader>rc :action ChooseRunConfiguration<CR>
+nnoremap <leader>q  :action CloseActiveTab<CR>
+nnoremap <leader>ga :action GotoAction<CR>
+nnoremap <leader>gi :action GotoImplementation<CR>
+nnoremap <leader>gs :action GotoSymbol<CR>
+nnoremap <leader>gd :action GotoDeclaration<CR>
+nnoremap <leader>gt :action GotoTest<CR>
+nnoremap <leader>gr :action GotoRelated<CR>
+nnoremap <leader>gf :action GotoFile<CR>
+nnoremap <leader>gb :action Annotate<CR>
+nnoremap <leader>gg :action Generate<CR>
+nnoremap <leader>tl Vy<CR>:action ActivateTerminalToolWindow<CR>
+vnoremap <leader>tl y<CR>:action ActivateTerminalToolWindow<CR>

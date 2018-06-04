@@ -1,0 +1,49 @@
+# zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+# homebrew mirror
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+# export PATH=/Developer/NVIDIA/CUDA-9.1/bin${PATH:+:${PATH}}
+# export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-9.1/lib\
+#  ${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
+export CUDA_HOME=/usr/local/cuda
+export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$DYLD_LIBRARY_PATH"
+export PATH="$CUDA_HOME/bin:$PATH"
+
+# homebrew
+alias bf='brew info'
+alias bi='brew install'
+alias bl='brew list'
+alias brm='brew uninstall'
+alias bs='brew search'
+alias budg='brew update && brew upgrade'
+alias bupd='brew update'
+alias bupg='brew upgrade'
+
+# homebrew cask
+alias bcc='brew cask clean'
+alias bcf='brew cask info'
+alias bci='brew cask install'
+alias bcl='brew cask list'
+alias bco='brew cask outdated'
+alias bcri='brew cask reinstall'
+alias bcrm='brew cask uninstall'
+alias bcs='brew cask search'
+alias bcu='brew cask outdated | xargs brew reinstall'
+
+# nvm
+alias nvm_on='export NVM_DIR=$HOME/.nvm && . /usr/local/opt/nvm/nvm.sh'
+
+# travis gem
+alias travis_on='[ -f $HOME/.travis/travis.sh ] && source /Users/yuthon/.travis/travis.sh'
+
+# utils
+alias typora='open -a typora'
+alias vim='/usr/local/bin/vim'
+export LD_LIBRARY_PATH=/Users/yuthon/Workspace/traffic-surveillance-analysis/tsa/external/vstream/python:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/Users/yuthon/Workspace/traffic-surveillance-analysis/tsa/external/easy_pr/python:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/Applications/VLC.app/Contents/MacOS/lib:$LD_LIBRARY_PATH
+
+# iterm utilities
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

@@ -1,0 +1,11 @@
+*~
+.#*
+.DS_Store
+.vim
+!.vim/after
+!.vim/vimrc
+!.vim/update.sh
+!.vim/update_packages.sh
+.postinstall/macos/.hammerspoon
+.aria2/*.session
+.idea

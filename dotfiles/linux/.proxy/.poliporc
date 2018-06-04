@@ -1,0 +1,19 @@
+# This file only needs to list configuration variables that deviate
+# from the default values.  See /usr/share/doc/polipo/examples/config.sample
+# and "polipo -v" for variables you can tweak and further information.
+
+logSyslog = false
+#logFile = /var/log/polipo/polipo.log
+
+proxyAddress = "0.0.0.0"
+proxyPort = 6152
+
+socksParentProxy = "127.0.0.1:6153"
+socksProxyType = socks5
+
+#chunkHighMard = 50331648
+objectHighMark = 16384
+
+serverMaxSlots = 64
+serverSlots = 16
+serverSlots1 = 32

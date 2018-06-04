@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+ssconfig="$HOME/.proxy/ss.json"
+poliporc="$HOME/.proxy/.poliporc"
+
+if [[ ! -e $ssconfig ]]; then
+  echo "missing $ssconfig"
+  exit 1
+elif [[ ! -e $poliporc ]]; then
+  echo "missing $poliporc"
+fi
+
+on() {
+  echo "Providing proxy service"
+  sslocal -c $ssconfig >/dev/null 2>&1 &
+  polipo -c $poliporc >/dev/null 2>&1 &
+}
+
+off() {
+  echo "Turning off proxy service"
+  sudo killall sslocal
+  sudo killall polipo
+}
+
+if [[ "$1" == "on" ]]; then
+  on
+elif [[ "$1" == "off" ]]; then
+  off
+else
+  echo "Usage: proxy on(off)"
+  exit 1
+fi
+exit 0

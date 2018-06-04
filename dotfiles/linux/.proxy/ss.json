@@ -1,0 +1,12 @@
+{
+  "server":"example.como",
+  "server_port":1234,
+  "local_port":6153,
+  "password":"password",
+  "timeout":600,
+  "method":"chacha20",
+  "protocol":"auth_sha1_v4",
+  "obfs":"http_simple",
+  "obfsparam":"cloudflare.com",
+  "group":"Example"
+}

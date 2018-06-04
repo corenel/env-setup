@@ -1,0 +1,29 @@
+# python linters and formatters
+autopep8
+flake8
+isort
+jedi
+mypy
+vim-vint
+yamllint
+yapf
+
+# cpp linters
+cpplint
+
+# scirnce packages
+numpy
+Pillow
+jupyter
+lxml
+numpy
+scikit-image
+scikit-learn
+scipy
+six
+
+# util
+neovim
+tmuxp
+virtualenvwrapper
+click

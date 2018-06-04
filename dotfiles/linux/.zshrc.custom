@@ -1,0 +1,66 @@
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda
+export PATH="$CUDA_HOME/bin:$HOME/.local/bin:$PATH"
+
+# linuxbrew
+[ -d "/home/linuxbrew/.linuxbrew/" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+[ -d "/home/linuxbrew/.linuxbrew/" ] && export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+[ -d "/home/linuxbrew/.linuxbrew/" ] && export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+
+# package manager
+export apt_pref='apt-get' # change to apt-fast if you like
+
+alias aac='sudo $apt_pref autoclean'
+alias acs='apt-cache search'
+alias ai='sudo $apt_pref install'
+alias apge='sudo $apt_pref purge'
+alias arm='sudo $apt_pref remove'
+alias audg='sudo $apt_pref update && sudo $apt_pref upgrade'
+alias aupd='sudo $apt_pref update'
+alias aupg='sudo $apt_pref upgrade'
+alias di='sudo dpkg -i'
+
+# shadowsocks
+alias ss='$HOME/proxyservice on'
+alias ssk='$HOME/proxyservice off'
+
+# ROS
+# export PYTHONPATH=${PYTHONPATH}:"/usr/lib/python2.7/dist-packages"
+setup_ros()
+{
+  # ZJUDancer humanoid project
+  export ZJUDANCER_ROBOTID=5
+  export ZJUDANCER_GUI=0
+  export ZJUDANCER_GPU=0
+  export ZJUDANCER_SIMULATION=true
+  # workon humanoid
+
+  [ -f /opt/ros/kinetic/setup.zsh ] && source /opt/ros/kinetic/setup.zsh
+  [ -f $HOME/humanoid-lib/devel/setup.zsh ] && source $HOME/humanoid-lib/devel/setup.zsh
+  [ -f $HOME/humanoid/devel/setup.zsh ] && source $HOME/humanoid/devel/setup.zsh
+  export ROSCONSOLE_FORMAT='[${time} ${file}:${line}]: ${message}'
+
+  alias rcd='roscd'
+  alias e='rosed'
+  alias rmk='catkin_make -j8'
+  alias rt="catkin_make run_tests"
+  alias rpkg='catkin_create_pkg'
+  alias rcore='roscore &'
+  alias rl='roslaunch'
+  alias rr='rosrun'
+
+  # alias sim='roslaunch dlaunch sim.launch'
+  # alias config='rl dconfig dconfig.launch'
+  # alias monitor='QT_DEVICE_PIXEL_RATIO=auto rr dmonitor dmonitor'
+  # alias dviz="rr dviz dviz"
+  # alias v="rl dvision default.launch"
+  # alias m="rl dmotion default.launch"
+  # alias rmv="rl dlaunch mv.launch"
+  # alias loglevel="sudo vim $ROS_ROOT/config/rosconsole.config"
+}
+alias sr=setup_ros
+
+# tilix
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        [ -f /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh
+fi
