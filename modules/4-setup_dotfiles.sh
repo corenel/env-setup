@@ -4,6 +4,10 @@ if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
 
+if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
+  source include/system_variables.sh
+fi
+
 ROBOT_SETUP_DIR=$HOME/.env-setup
 ROBOT_SETUP_REPO=git@github.com:corenel/env-setup.git
 NVIM_SETUP_REPO=git@github.com:corenel/ysvim.git
@@ -58,15 +62,15 @@ link_common_dotfiles() {
       continue
       ;;
     *)
-      symlink ${DOTFILE_BASEDIR}/${path} $HOME/${path}
+      symlink ${DOTFILE_BASEDIR}/common/${path} $HOME/${path}
       ;;
     esac
   done
   popd
 
   # init global gitconfig and gitignore
-  cp -v "$DOTFILE_BASEDIR/.gitconfig.example" "$HOME/.gitconfig"
-  cp -v "$DOTFILE_BASEDIR/.gitignore.example" "$HOME/.gitignore"
+  cp -v "$DOTFILE_BASEDIR/common/.gitconfig.example" "$HOME/.gitconfig"
+  cp -v "$DOTFILE_BASEDIR/common/.gitignore.example" "$HOME/.gitignore"
 
   # setup ssh key
   # cp -v -r "$DOTFILE_BASEDIR/.ssh" "$HOME/"
