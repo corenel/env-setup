@@ -32,7 +32,11 @@ alias bcs='brew cask search'
 alias bcu='brew cask outdated | xargs brew reinstall'
 
 # nvm
-alias nvm_on='export NVM_DIR=$HOME/.nvm && . /usr/local/opt/nvm/nvm.sh'
+setup_nvm () {
+  export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
+}
+alias snvm=setup_nvm
 
 # travis gem
 alias travis_on='[ -f $HOME/.travis/travis.sh ] && source /Users/yuthon/.travis/travis.sh'

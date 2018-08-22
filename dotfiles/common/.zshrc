@@ -12,7 +12,12 @@ export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
 
 ZSH_THEME="ys"
 
-plugins=(git docker autojump zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+plugins=(
+  git autojump extract
+  copydir copybuffer copyfile cp
+  zsh-autosuggestions zsh-syntax-highlighting zsh-completions
+  colored-man-pages colorize
+)
 
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 

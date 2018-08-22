@@ -25,25 +25,25 @@ alias ss='$HOME/proxyservice on'
 alias ssk='$HOME/proxyservice off'
 
 # ROS
-# export PYTHONPATH=${PYTHONPATH}:"/usr/lib/python2.7/dist-packages"
 setup_ros()
 {
   # ZJUDancer humanoid project
   export ZJUDANCER_ROBOTID=5
-  export ZJUDANCER_GUI=0
+  export ZJUDANCER_GUI=1
   export ZJUDANCER_GPU=0
-  export ZJUDANCER_SIMULATION=true
-  # workon humanoid
+  export ZJUDANCER_TX2=0
 
   [ -f /opt/ros/kinetic/setup.zsh ] && source /opt/ros/kinetic/setup.zsh
-  [ -f $HOME/humanoid-lib/devel/setup.zsh ] && source $HOME/humanoid-lib/devel/setup.zsh
-  [ -f $HOME/humanoid/devel/setup.zsh ] && source $HOME/humanoid/devel/setup.zsh
+  [ -f $HOME/dancer-workspace/.zshrc.dancer ] && source $HOME/dancer-workspace/.zshrc.dancer
+  # [ -f $HOME/humanoid-lib/devel/setup.zsh ] && source $HOME/humanoid-lib/devel/setup.zsh
+  # [ -f $HOME/humanoid/devel/setup.zsh ] && source $HOME/humanoid/devel/setup.zsh
   export ROSCONSOLE_FORMAT='[${time} ${file}:${line}]: ${message}'
 
   alias rcd='roscd'
   alias e='rosed'
   alias rmk='catkin_make -j8'
   alias rt="catkin_make run_tests"
+  alias rcl='catkin_make clean'
   alias rpkg='catkin_create_pkg'
   alias rcore='roscore &'
   alias rl='roslaunch'
