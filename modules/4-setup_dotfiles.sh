@@ -9,8 +9,8 @@ if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
 fi
 
 ROBOT_SETUP_DIR=$HOME/.env-setup
-ROBOT_SETUP_REPO=git@github.com:corenel/env-setup.git
-NVIM_SETUP_REPO=git@github.com:corenel/ysvim.git
+ROBOT_SETUP_REPO=https://github.com/corenel/env-setup.git
+NVIM_SETUP_REPO=https://github.com/corenel/ysvim.git
 DOTFILE_BASEDIR=${ROBOT_SETUP_DIR}/dotfiles
 
 symlink() {
