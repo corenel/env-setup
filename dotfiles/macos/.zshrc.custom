@@ -3,9 +3,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # homebrew mirror
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
-# export PATH=/Developer/NVIDIA/CUDA-9.1/bin${PATH:+:${PATH}}
-# export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-9.1/lib\
-#  ${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
+
 export CUDA_HOME=/usr/local/cuda
 export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$DYLD_LIBRARY_PATH"
 export PATH="$CUDA_HOME/bin:$PATH"
@@ -44,10 +42,12 @@ alias travis_on='[ -f $HOME/.travis/travis.sh ] && source /Users/yuthon/.travis/
 # utils
 alias typora='open -a typora'
 alias vim='/usr/local/bin/vim'
-export LD_LIBRARY_PATH=/Users/yuthon/Workspace/traffic-surveillance-analysis/tsa/external/vstream/python:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=/Users/yuthon/Workspace/traffic-surveillance-analysis/tsa/external/easy_pr/python:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/Applications/VLC.app/Contents/MacOS/lib:$LD_LIBRARY_PATH
 
 # iterm utilities
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+setup_conda() {
+  . $HOME/miniconda3/etc/profile.d/conda.sh
+}
 
