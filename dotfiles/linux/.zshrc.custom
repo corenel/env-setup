@@ -64,3 +64,6 @@ alias sr=setup_ros
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         [ -f /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh
 fi
+
+# extraterm
+[ -f /opt/extraterm-commands/setup_extraterm_zsh.zsh ] && source /opt/extraterm-commands/setup_extraterm_zsh.zsh

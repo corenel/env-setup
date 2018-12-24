@@ -23,7 +23,7 @@ scipy
 six
 
 # util
-neovim
-tmuxp
+#pynvim
+#tmuxp
 virtualenvwrapper
 click

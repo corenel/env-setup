@@ -6,6 +6,7 @@ export EDITOR='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 # export CXX="ccache clang++"
 # export CC="ccache clang"
 export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
