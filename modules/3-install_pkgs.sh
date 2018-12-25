@@ -104,12 +104,9 @@ build_tmux() {
 }
 
 install_homebrew_pkgs() {
-  # tap
-  brew tap homebrew/science
-
   # pkgs
   brew install zsh autojump tmux\
-    python3 python pip-completion \
+    python pip-completion \
     watch cppcheck wget nvm gcc \
     htop reattach-to-user-namespace \
     ffmpeg cmake tree openssh \
@@ -128,12 +125,11 @@ install_homebrew_casks() {
   brew tap caskroom/cask
 
   brew cask install \
-    google-chrome google-backup-and-sync sublime-text calibre docker dropbox etcher \
-    hammerspoon iina karabiner-elements kext-utility skim \
-    vlc vlcstreamer real-vnc vnc-viewer xld intel-power-gadget \
-    android-file-transfer typora aria2gui iterm2 xquartz maciasl mounty \
-    xamarin-jdk android-sdk
-  # mactex surge clover-configurator\
+    sublime-text calibre docker hammerspoon iina karabiner-elements skim \
+    vnc-viewer xld intel-power-gadget android-file-transfer \
+    xquartz mactex mounty sourcetree \
+    google-chrome google-backup-and-sync \
+    android-file-transfer typora aria2gui iterm2 maciasl mounty
 }
 
 install_homebrew_fonts() {
