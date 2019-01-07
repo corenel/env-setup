@@ -11,8 +11,8 @@ fi
 add_ppa_repo() {
   sudo apt-get install software-properties-common
   sudo add-apt-repository -y ppa:neovim-ppa/stable
-  sudo add-apt-repository -y ppa:jonathonf/python-3.6
-  sudo add-apt-repository -y ppa:pi-rho/dev
+  # sudo add-apt-repository -y ppa:jonathonf/python-3.6
+  # sudo add-apt-repository -y ppa:pi-rho/dev
   sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 http\2://launchpad.proxy.ustclug.org#ig' {} \;
   sudo apt-get update
 }
