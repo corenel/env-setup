@@ -2,7 +2,7 @@ export DISABLE_AUTO_TITLE='true'
 export ZSH=$HOME/.oh-my-zsh
 export TERM=screen-256color
 export GTEST_COLOR=1
-export EDITOR='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+[ -x "$(command -v nvim)" ] && export EDITOR='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
 # export CXX="ccache clang++"
 # export CC="ccache clang"
 export LC_ALL=en_US.UTF-8
@@ -194,8 +194,25 @@ rto () {
   echo "rsync $relpath to $dsthost:$relpath ..."
   if [ -e "$(pwd)/exclude.txt" ] ; then
     rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$parentdir
+  elif [ -e "$(pwd)/.gitignore" ] ; then
+    rsync -avzP --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$parentdir
   else
     rsync -avzP $(pwd) $dsthost:$parentdir
+  fi
+}
+
+rfrom () {
+  dsthost=$1
+  relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+  parentdir=$(dirname $(pwd))
+
+  echo "rsync $relpath from $dsthost:$relpath ..."
+  if [ -e "$(pwd)/exclude.txt" ] ; then
+    rsync -avzP --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${relpath} ${parentdir}
+  elif [ -e "$(pwd)/.gitignore" ] ; then
+    rsync -avzP --filter=":- $(pwd)/.gitignore" ${dsthost}:${relpath} ${parentdir}
+  else
+    rsync -avzP ${dsthost}:${relpath} ${parentdir}
   fi
 }
 
