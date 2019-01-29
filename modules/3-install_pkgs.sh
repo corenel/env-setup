@@ -11,8 +11,8 @@ fi
 add_ppa_repo() {
   sudo apt-get install software-properties-common
   sudo add-apt-repository -y ppa:neovim-ppa/stable
-  sudo add-apt-repository -y ppa:jonathonf/python-3.6
-  sudo add-apt-repository -y ppa:pi-rho/dev
+  # sudo add-apt-repository -y ppa:jonathonf/python-3.6
+  # sudo add-apt-repository -y ppa:pi-rho/dev
   sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 http\2://launchpad.proxy.ustclug.org#ig' {} \;
   sudo apt-get update
 }
@@ -58,7 +58,15 @@ install_tightvnc() {
   vncserver -kill :1
   mv $HOME/.vnc/xstartup $HOME/.vnc/xstartup.bak
   mkdir -p $HOME/.vnc
-  echo -e '#!/bin/bash\nxrdb $HOME/.Xresources\nstartxfce4 &' >>$HOME/.vnc/xstartup
+  echo -e '#!/bin/sh
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+startxfce4 &
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &' > $HOME/.vnc/xstartup
+  chmod +x $HOME/.vnc/xstartup
   vncserver
 }
 
@@ -127,13 +135,9 @@ install_homebrew_casks() {
   brew cask install \
     sublime-text calibre docker hammerspoon iina karabiner-elements skim \
     vnc-viewer xld intel-power-gadget android-file-transfer \
-    xquartz mactex mounty sourcetree
-    # google-chrome google-backup-and-sync dropbox \
-    # kext-utility \
-    # vlc vlcstreamer \
-    # android-file-transfer typora aria2gui iterm2 maciasl mounty \
-    # xamarin-jdk android-sdk \
-    # surge clover-configurator\
+    xquartz mactex mounty sourcetree \
+    google-chrome google-backup-and-sync \
+    android-file-transfer typora aria2gui iterm2 maciasl mounty
 }
 
 install_homebrew_fonts() {
