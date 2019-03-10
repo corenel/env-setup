@@ -107,6 +107,44 @@ alias tks='tmux kill-session -t'
 alias tkw='tmux kill-window -t'
 alias tload='tmuxp load'
 
+# python
+alias py3='python3'
+alias py2='python2'
+alias pip3='python3 -m pip'
+alias pip2='python2 -m pip'
+alias pip3upgrade='pip3 install -U $(pip3 list --outdated --format=freeze | awk "{split($0, a, \"==\"); print a[1]}")'
+
+# print info
+alias dfh='df -hlT'
+alias gput='watch -n 1 nvidia-smi'
+alias tree='tree -F -A -I CVS'
+
+# aria2c
+alias ar='aria2c --conf-path=$HOME/.aria2/aria2.conf -D'
+
+# nvim
+alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+# alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+
+# util func
+log_status() {
+    tput setaf 6
+    echo $1
+    tput sgr0
+}
+
+log_warning() {
+    tput setaf 3
+    echo $1
+    tput sgr0
+}
+
+log_error() {
+    tput setaf 1
+    echo $1
+    tput sgr0
+}
+
 tssh () {
   TPID=$(tmux list-panes -F "#{pane_active} #{pane_pid}" | awk "\$1==1 {\$1=\"\"; print}" | sed "s/^[ \\t]*//;s/[ \\t]*$//")
   TTTY=$(ps -ao pid,tty,args | sort | awk -v TPID=$TPID "\$1 == TPID {\$1=\"\"; \$3=\"\"; print}" | sed "s/^[ ]*//;s/[ ]*$//")
@@ -137,26 +175,6 @@ tacall () {
   done
 }
 
-# python
-alias py3='python3'
-alias py2='python2'
-alias pip3='python3 -m pip'
-alias pip2='python2 -m pip'
-alias pip3upgrade='pip3 install -U $(pip3 list --outdated --format=freeze | awk "{split($0, a, \"==\"); print a[1]}")'
-
-# print info
-alias dfh='df -hlT'
-alias gput='watch -n 1 nvidia-smi'
-alias tree='tree -F -A -I CVS'
-
-# aria2c
-alias ar='aria2c --conf-path=$HOME/.aria2/aria2.conf -D'
-
-# nvim
-alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-# alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-
-# misc
 replace_name () {
   file_pattern=$1
   before=$2
@@ -185,28 +203,32 @@ replace_encoding () {
   done
 }
 
-# rsync
+# rsync to distination host
 rto () {
-  dsthost=$1
-  relpath=$(pwd | sed "s#$HOME#\$HOME#g")
-  parentdir=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
+  for dsthost in "${@}"
+  do
+    relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+    parentdir=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
 
-  echo "rsync $relpath to $dsthost:$relpath ..."
-  if [ -e "$(pwd)/exclude.txt" ] ; then
-    rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$parentdir
-  elif [ -e "$(pwd)/.gitignore" ] ; then
-    rsync -avzP --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$parentdir
-  else
-    rsync -avzP $(pwd) $dsthost:$parentdir
-  fi
+    log_status "rsync $relpath to $dsthost:$relpath ..."
+    if [ -e "$(pwd)/exclude.txt" ] ; then
+      rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$parentdir
+    elif [ -e "$(pwd)/.gitignore" ] ; then
+      rsync -avzP --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$parentdir
+    else
+      rsync -avzP $(pwd) $dsthost:$parentdir
+    fi
+    echo
+  done
 }
 
+# rsync from source host
 rfrom () {
   dsthost=$1
   relpath=$(pwd | sed "s#$HOME#\$HOME#g")
   parentdir=$(dirname $(pwd))
 
-  echo "rsync $relpath from $dsthost:$relpath ..."
+  log_status "rsync $relpath from $dsthost:$relpath ..."
   if [ -e "$(pwd)/exclude.txt" ] ; then
     rsync -avzP --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${relpath} ${parentdir}
   elif [ -e "$(pwd)/.gitignore" ] ; then
@@ -228,7 +250,7 @@ proxy () {
   export ftp_proxy=$http_proxy
   export NO_PROXY="local-delivery,local-auth"
   export no_proxy=$NO_PROXY
-  echo "Proxy on"
+  log_status "Proxy on"
 }
 
 noproxy () {
@@ -238,10 +260,10 @@ noproxy () {
   unset FTP_PROXY
   unset https_proxy
   unset ftp_proxy
-  echo "Proxy off"
+  log_status "Proxy off"
 }
 
-# custom
+# load specific config
 [ -f $HOME/.zshrc.custom ] && source $HOME/.zshrc.custom
 
 # virtualenv
