@@ -36,13 +36,6 @@ install_python_pkgs() {
   pip3 install -r requiremnts.txt
 }
 
-install_nerd_fonts() {
-  pushd /tmp
-  git clone https://github.com/ryanoasis/nerd-fonts.git
-  ./install.sh
-  popd
-}
-
 install_oh_my_zsh() {
   if [ ! -d $HOME/.oh-my-zsh ]; then
     sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - --no-check-certificate)"
@@ -53,67 +46,9 @@ install_oh_my_zsh() {
   fi
 }
 
-install_tightvnc() {
-  sudo apt-get install -y xfce4 xfce4-goodies tightvncserver
-  vncserver -kill :1
-  mv $HOME/.vnc/xstartup $HOME/.vnc/xstartup.bak
-  mkdir -p $HOME/.vnc
-  echo -e '#!/bin/sh
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-startxfce4 &
-[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
-[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
-xsetroot -solid grey
-vncconfig -iconic &' > $HOME/.vnc/xstartup
-  chmod +x $HOME/.vnc/xstartup
-  vncserver
-}
-
-build_tmux() {
-  tmux_ver=2.6
-  libevent_ver=2.1.8
-
-  # uninstall installed tmux
-  sudo apt-get remove -y tmux
-  sudo apt-get remove -y 'libevent-*'
-
-  # install libncurses
-  sudo apt-get install -y libncurses5-dev
-
-  # download source
-  pushd /tmp
-  if [[ ! -d "tmux-$tmux_ver" ]]; then
-    wget "https://github.com/tmux/tmux/releases/download/$tmux_ver/tmux-$tmux_ver.tar.gz"
-    tar xvzf "tmux-$tmux_ver.tar.gz"
-  fi
-
-  if [[ ! -d "libevent-$libevent_ver-stable" ]]; then
-    wget "https://github.com/libevent/libevent/releases/download/release-$libevent_ver-stable/libevent-$libevent_ver-stable.tar.gz"
-    tar xvzf "libevent-$libevent_ver-stable.tar.gz"
-  fi
-
-  # install libevent
-  if [[ -d "libevent-$libevent_ver-stable" ]]; then
-    pushd "libevent-$libevent_ver-stable"
-    ./configure && make -j8
-    sudo make install
-    popd
-  fi
-
-  # build tmux and install
-  if [[ -d "tmux-$tmux_ver" ]]; then
-    pushd "tmux-$tmux_ver"
-    ./configure && make -j8
-    sudo make install
-    popd
-  fi
-  popd
-}
-
 install_homebrew_pkgs() {
   # pkgs
-  brew install zsh autojump tmux\
+  brew install zsh autojump tmux \
     python pip-completion \
     watch cppcheck wget nvm gcc \
     htop reattach-to-user-namespace \
@@ -151,23 +86,21 @@ install_homebrew_fonts() {
 }
 
 case $OS_TYPE in
-  Linux*)
-    confirm add_ppa_repo "Add ppa repository"
-    confirm install_utils "Install necessary utilities"
-    confirm install_libs "Install necessary libraries"
-    confirm install_python_pkgs "Install Python packages"
-    confirm install_oh_my_zsh "Install Oh-My-Zsh"
-    confirm install_tightvnc "Install TightVNC"
-    confirm install_nerd_fonts "Install Nerd fonts"
-    confirm build_tmux "Build tmux"
-    ;;
-  Darwin*)
-    confirm install_homebrew_pkgs "Install packages from HomeBrew"
-    confirm install_homebrew_casks "Install softwares from HomeBrew Cask"
-    confirm install_homebrew_fonts "Install fonts from HomeBrew"
-    confirm install_python_pkgs "Install Python packages"
-    confirm install_oh_my_zsh "Install Oh-My-Zsh"
-    ;;
-  *)
-    error "OS $OS_TYPE is not supported"
+Linux*)
+  confirm add_ppa_repo "Add ppa repository"
+  confirm install_utils "Install necessary utilities"
+  confirm install_libs "Install necessary libraries"
+  confirm install_python_pkgs "Install Python packages"
+  confirm install_oh_my_zsh "Install Oh-My-Zsh"
+  ;;
+Darwin*)
+  confirm install_homebrew_pkgs "Install packages from HomeBrew"
+  confirm install_homebrew_casks "Install softwares from HomeBrew Cask"
+  confirm install_homebrew_fonts "Install fonts from HomeBrew"
+  confirm install_python_pkgs "Install Python packages"
+  confirm install_oh_my_zsh "Install Oh-My-Zsh"
+  ;;
+*)
+  error "OS $OS_TYPE is not supported"
+  ;;
 esac

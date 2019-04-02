@@ -48,6 +48,7 @@ setup_ros()
   alias rcore='roscore &'
   alias rl='roslaunch'
   alias rr='rosrun'
+  alias rlog="sudo vim $ROS_ROOT/config/rosconsole.config"
 
   # alias sim='roslaunch dlaunch sim.launch'
   # alias config='rl dconfig dconfig.launch'
@@ -59,11 +60,3 @@ setup_ros()
   # alias loglevel="sudo vim $ROS_ROOT/config/rosconsole.config"
 }
 alias sr=setup_ros
-
-# tilix
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        [ -f /etc/profile.d/vte.sh ] && source /etc/profile.d/vte.sh
-fi
-
-# extraterm
-[ -f /opt/extraterm-commands/setup_extraterm_zsh.zsh ] && source /opt/extraterm-commands/setup_extraterm_zsh.zsh

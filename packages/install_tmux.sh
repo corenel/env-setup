@@ -2,7 +2,7 @@
 
 tmux_ver=2.6
 libevent_ver=2.1.8
-TMP=$HOME/.tmp
+TMP=/tmp
 
 # uninstall installed tmux
 sudo apt-get remove -y tmux
