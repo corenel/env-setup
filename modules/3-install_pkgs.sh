@@ -30,10 +30,10 @@ install_libs() {
 }
 
 install_python_pkgs() {
-  pip install -U pip
-  pip install -r requiremnts.txt
-  pip3 install -U pip
-  pip3 install -r requiremnts.txt
+  sudo -H -E python -m pip install -U pip
+  sudo -H -E python -m pip install -r modules/requirements.txt
+  sudo -H -E python3 -m pip install -U pip
+  sudo -H -E python3 -m pip install -r modules/requirements.txt
 }
 
 install_oh_my_zsh() {
