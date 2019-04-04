@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-tmux_ver=2.6
-libevent_ver=2.1.8
+TMUX_VERSION=2.8
+LIBEVENT_VERSION=2.1.8
 TMP=/tmp
 
 # uninstall installed tmux
@@ -15,23 +15,23 @@ sudo apt-get install -y libncurses5-dev
 mkdir -p $TMP
 cd $TMP
 
-if [[ ! -d "tmux-$tmux_ver" ]]; then
-    wget "https://github.com/tmux/tmux/releases/download/$tmux_ver/tmux-$tmux_ver.tar.gz"
-    tar xvzf "tmux-$tmux_ver.tar.gz"
+if [[ ! -d "tmux-$TMUX_VERSION" ]]; then
+    wget "https://github.com/tmux/tmux/releases/download/$TMUX_VERSION/tmux-$TMUX_VERSION.tar.gz"
+    tar xvzf "tmux-$TMUX_VERSION.tar.gz"
 fi
 
-if [[ ! -d "libevent-$libevent_ver-stable" ]]; then
-    wget "https://github.com/libevent/libevent/releases/download/release-$libevent_ver-stable/libevent-$libevent_ver-stable.tar.gz"
-    tar xvzf "libevent-$libevent_ver-stable.tar.gz"
+if [[ ! -d "libevent-$LIBEVENT_VERSION-stable" ]]; then
+    wget "https://github.com/libevent/libevent/releases/download/release-$LIBEVENT_VERSION-stable/libevent-$LIBEVENT_VERSION-stable.tar.gz"
+    tar xvzf "libevent-$LIBEVENT_VERSION-stable.tar.gz"
 fi
 
 # install libevent
-cd "libevent-$libevent_ver-stable"
-./configure && make -j$nproc
+cd "libevent-$LIBEVENT_VERSION-stable"
+./configure && make
 sudo make install
 cd ..
 
 # build tmux and install
-cd "tmux-$tmux_ver"
-./configure && make -j$nproc
+cd "tmux-$TMUX_VERSION"
+./configure && make
 sudo make install

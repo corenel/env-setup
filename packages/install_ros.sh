@@ -1,32 +1,18 @@
 #!/usr/bin/env bash
 
-if [ -z $COMMON_SOURCED ]; then
-  source include/common.sh
-fi
+# use USTC mirror for higher downloading speed
+sudo sh -c '. /etc/lsb-release && echo "deb https://mirrors.ustc.edu.cn/ros/ubuntu/ $DISTRIB_CODENAME main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-get update
+sudo apt-get install -y \
+  ros-kinetic-desktop-full \
+  python-rosinstall python-rosinstall-generator python-wstool \
+  ros-kinetic-image-transport ros-kinetic-tf2 ros-kinetic-tf2-geometry-msgs
+# ros-kinetic-opencv3
 
-if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
-  source include/system_variables.sh
-fi
+sudo rosdep init
+rosdep update
 
-install_ros() {
-  INSTALL_DIR=/tmp/installROS$JETSON_BOARD
-  if [ "$JETSON_BOARD" != "TX1" ] && [ "$JETSON_BOARD" != "TX2" ]; then
-    error "Unsupported device for ROS"
-    return
-  fi
-
-  INSTALL_DIR=/tmp/installROS${JETSON_BOARD}
-  INSTALL_URL=git@github.com:DancerDeps/installROS${JETSON_BOARD}.git
-  git clone ${INSTALL_URL} ${INSTALL_DIR}
-  if [ -d ${INSTALL_DIR} ]; then
-    pushd ${INSTALL_DIR}
-    ./installROS.sh
-    sudo apt-get install -y \
-      ros-kinetic-image-transport ros-kinetic-tf2 \
-      ros-kinetic-tf2-geometry-msgs \
-      ros-kinetic-opencv3 ros-kinetic-cv-bridge
-    popd
-  fi
-}
-
-confirm install_ros "Install ROS"
+# if you use bash, replace .zshrc with .bashrc
+# echo 'source /opt/ros/kinetic/setup.zsh' >> ~/.zshrc
+# source ~/.zshrc

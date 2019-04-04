@@ -3,7 +3,7 @@
 PACKAGE=axel
 VERSION=2.15
 URL=https://github.com/axel-download-accelerator/axel/releases/download/v$VERSION/axel-$VERSION.tar.gz
-TMP=$HOME/.tmp
+TMP=/tmp
 
 # uninstall installed packages
 sudo apt-get remove -y axel
@@ -12,11 +12,7 @@ sudo apt-get remove -y axel
 sudo apt-get install -y libssl-dev
 
 # download source
-if [[ -d $TMP ]]; then
-    mkdir -p $TMP
-fi
-cd $TMP
-
+pushd $TMP
 if [[ ! -d "axel-$VERSION" ]]; then
     wget $URL
     tar xvf "axel-$VERSION.tar.gz"
@@ -26,3 +22,4 @@ fi
 cd "axel-$VERSION"
 ./configure && make -j$nproc
 sudo make install
+popd
