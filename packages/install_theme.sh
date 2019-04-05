@@ -12,6 +12,7 @@ install_unity_theme() {
   sudo apt-get update
   sudo apt-get install -y \
     unity-tweak-tool \
+    gnome-tweak-tool \
     arc-flatabulous-theme \
     papirus-folders papirus-icon-theme
 }
