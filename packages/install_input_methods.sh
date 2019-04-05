@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
