@@ -5,7 +5,7 @@ sudo sh -c '. /etc/lsb-release && echo "deb https://mirrors.ustc.edu.cn/ros/ubun
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
 sudo apt-get update
 sudo apt-get install -y \
-  ros-kinetic-desktop-full \
+  ros-kinetic-ros-base \
   python-rosinstall python-rosinstall-generator python-wstool \
   ros-kinetic-image-transport ros-kinetic-tf2 ros-kinetic-tf2-geometry-msgs
 # ros-kinetic-opencv3

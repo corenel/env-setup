@@ -5,9 +5,9 @@ if [ -z $COMMON_SOURCED ]; then
 fi
 
 OPENCV_VERSION=3.4.5
-CUDA_VERSION="10-1"
-CUDA_ARCH="5.0"
-TMP_DIR=$HOME
+CUDA_VERSION="9-0"
+CUDA_ARCH="6.2"
+TMP_DIR=/tmp
 
 status "Install dependencies of OpenCV"
 sudo apt-get install -y \
@@ -39,7 +39,7 @@ fi
 status "Building OpenCV"
 cd opencv-${OPENCV_VERSION}
 mkdir -p build && cd build
-if [ ${ZJUDANCER_GPU}]; then
+if [ ${ZJUDANCER_GPU} -eq "1" ]; then
   echo 'Build OpenCV on Jetson Tegra with CUDA'
   cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -66,7 +66,7 @@ if [ ${ZJUDANCER_GPU}]; then
     -DWITH_TBB=ON \
     -DWITH_1394=OFF \
     -DWITH_OPENEXR=OFF \
-    -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-${CUDA_VERSION} \
+    -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda \
     -DCUDA_ARCH_BIN=${CUDA_ARCH} \
     -DCUDA_ARCH_PTX="" \
     -DINSTALL_C_EXAMPLES=ON \
