@@ -24,7 +24,7 @@ install_utils() {
 
 install_libs() {
   sudo apt-get install -y \
-    python3-dev python3-pip python-dev python-pip
+    python3-dev python3-pip python-dev python-pip libudev-dev libx264-dev
 }
 
 install_python_pkgs() {
