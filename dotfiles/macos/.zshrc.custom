@@ -50,3 +50,5 @@ setup_conda() {
   . $HOME/miniconda3/etc/profile.d/conda.sh
 }
 
+# vscode
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

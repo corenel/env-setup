@@ -17,6 +17,7 @@ let maplocalleader =' '
 " nmap \c :CLEAN<CR>:TEOL<CR>
 nmap \e :action OpenFile<CR>
 nmap \f :action ReformatCode<CR>
+nmap \r :action YapfFormat<CR>
 " nmap \g :Gstatus<CR>
 nmap \h :nohlsearch<CR>
 nmap \i :action OptimizeImports<CR>
