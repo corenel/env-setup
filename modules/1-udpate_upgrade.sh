@@ -31,38 +31,40 @@ use_mirror_sources() {
 
   SOURCES_LIST_PATH="/etc/apt/sources.list"
 
-  if [ confirmation "Replace ubuntu-port sources" ]; then
+  if confirmation "Replace ubuntu-port sources"; then
     sudo sed -i 's/ports.ubuntu.com/mirrors.ustc.edu.cn/g' "$SOURCES_LIST_PATH"
   fi
 
-  if [ confirmation "Replace ubuntu sources" ]; then
-    sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' "$SOURCES_LIST_PATH"
+  if confirmation "Replace ubuntu sources"; then
+    sudo sed -i 's/http:\/\/.*archive.ubuntu.com/http:\/\/mirrors.ustc.edu.cn/g' "$SOURCES_LIST_PATH"
+    sudo sed -i 's/http:\/\/.*security.ubuntu.com/http:\/\/mirrors.ustc.edu.cn/g' "$SOURCES_LIST_PATH"
   fi
 
-  if [ confirmation "Replace debian sources" ]; then
+  if confirmation "Replace debian sources"; then
     sudo sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' "$SOURCES_LIST_PATH"
     sudo sed -i 's/security.debian.org/mirrors.ustc.edu.cn/g' "$SOURCES_LIST_PATH"
   fi
 
-  if [ confirmation "Add debian backports sources" ]; then
-    if [ ! grep -q "stretch-backport" "$SOURCES_LIST_PATH" ]; then
+  if  confirmation "Add debian backports sources"; then
+    if ! grep -q "stretch-backport" "$SOURCES_LIST_PATH"; then
       echo 'deb http://mirrors.ustc.edu.cn/debian/ stretch-backports main contrib non-free' | sudo tee -a "$SOURCES_LIST_PATH"
       echo 'deb-src http://mirrors.ustc.edu.cn/debian/ stretch-backports main contrib non-free' | sudo tee -a "$SOURCES_LIST_PATH"
     fi
   fi
 
-  if [ confirmation "Add debian updates sources" ]; then
-    if [ ! grep -q stretch-updates "$SOURCES_LIST_PATH" ]; then
+  if confirmation "Add debian updates sources"; then
+    if ! grep -q stretch-updates "$SOURCES_LIST_PATH"; then
       echo 'deb http://mirrors.ustc.edu.cn/debian/ stretch-updates main contrib non-free' | sudo tee -a "$SOURCES_LIST_PATH"
       echo 'deb-src http://mirrors.ustc.edu.cn/debian/ stretch-updates main contrib non-free' | sudo tee -a "$SOURCES_LIST_PATH"
     fi
   fi
 
-  if [ confirmation "Replace launch ppa sources" ]; then
-    sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 http\2://launchpad.proxy.ustclug.org#ig' {} \;
+  if confirmation "Replace launch ppa sources"; then
+    sudo apt-get install -y apt-transport-https
+    sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 https://launchpad.proxy.ustclug.org#ig' {} \;
   fi
 
-  if [ confirmation "Use https USTC mirror" ]; then
+  if confirmation "Use https USTC mirror"; then
     sudo apt-get install -y apt-transport-https
     sudo sed -i 's/http:\/\/mirrors.ustc.edu.cn/https:\/\/mirrors.ustc.edu.cn/' "$SOURCES_LIST_PATH"
   fi

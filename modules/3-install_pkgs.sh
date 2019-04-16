@@ -11,9 +11,7 @@ fi
 add_ppa_repo() {
   sudo apt-get install software-properties-common
   sudo add-apt-repository -y ppa:neovim-ppa/stable
-  # sudo add-apt-repository -y ppa:jonathonf/python-3.6
-  # sudo add-apt-repository -y ppa:pi-rho/dev
-  sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 http\2://launchpad.proxy.ustclug.org#ig' {} \;
+  sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 https://launchpad.proxy.ustclug.org#ig' {} \;
   sudo apt-get update
 }
 
@@ -26,21 +24,14 @@ install_utils() {
 
 install_libs() {
   sudo apt-get install -y \
-    python3-dev python3-pip python-dev python-pip
+    python3-dev python3-pip python-dev python-pip libudev-dev libx264-dev
 }
 
 install_python_pkgs() {
-  pip install -U pip
-  pip install -r requiremnts.txt
-  pip3 install -U pip
-  pip3 install -r requiremnts.txt
-}
-
-install_nerd_fonts() {
-  pushd /tmp
-  git clone https://github.com/ryanoasis/nerd-fonts.git
-  ./install.sh
-  popd
+  sudo -H -E python -m pip install -U pip
+  sudo -H -E python -m pip install -r modules/requirements.txt
+  sudo -H -E python3 -m pip install -U pip
+  sudo -H -E python3 -m pip install -r modules/requirements.txt
 }
 
 install_oh_my_zsh() {
@@ -50,70 +41,13 @@ install_oh_my_zsh() {
   if [ -d $HOME/.oh-my-zsh/custom ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    git clone https://github.com/zsh-users/zsh-completions.git $HOME/.oh-my-zsh/custom/plugins/zsh-completions
   fi
-}
-
-install_tightvnc() {
-  sudo apt-get install -y xfce4 xfce4-goodies tightvncserver
-  vncserver -kill :1
-  mv $HOME/.vnc/xstartup $HOME/.vnc/xstartup.bak
-  mkdir -p $HOME/.vnc
-  echo -e '#!/bin/sh
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADDRESS
-startxfce4 &
-[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
-[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
-xsetroot -solid grey
-vncconfig -iconic &' > $HOME/.vnc/xstartup
-  chmod +x $HOME/.vnc/xstartup
-  vncserver
-}
-
-build_tmux() {
-  tmux_ver=2.6
-  libevent_ver=2.1.8
-
-  # uninstall installed tmux
-  sudo apt-get remove -y tmux
-  sudo apt-get remove -y 'libevent-*'
-
-  # install libncurses
-  sudo apt-get install -y libncurses5-dev
-
-  # download source
-  pushd /tmp
-  if [[ ! -d "tmux-$tmux_ver" ]]; then
-    wget "https://github.com/tmux/tmux/releases/download/$tmux_ver/tmux-$tmux_ver.tar.gz"
-    tar xvzf "tmux-$tmux_ver.tar.gz"
-  fi
-
-  if [[ ! -d "libevent-$libevent_ver-stable" ]]; then
-    wget "https://github.com/libevent/libevent/releases/download/release-$libevent_ver-stable/libevent-$libevent_ver-stable.tar.gz"
-    tar xvzf "libevent-$libevent_ver-stable.tar.gz"
-  fi
-
-  # install libevent
-  if [[ -d "libevent-$libevent_ver-stable" ]]; then
-    pushd "libevent-$libevent_ver-stable"
-    ./configure && make -j8
-    sudo make install
-    popd
-  fi
-
-  # build tmux and install
-  if [[ -d "tmux-$tmux_ver" ]]; then
-    pushd "tmux-$tmux_ver"
-    ./configure && make -j8
-    sudo make install
-    popd
-  fi
-  popd
 }
 
 install_homebrew_pkgs() {
   # pkgs
-  brew install zsh autojump tmux\
+  brew install zsh autojump tmux \
     python pip-completion \
     watch cppcheck wget nvm gcc \
     htop reattach-to-user-namespace \
@@ -151,23 +85,21 @@ install_homebrew_fonts() {
 }
 
 case $OS_TYPE in
-  Linux*)
-    confirm add_ppa_repo "Add ppa repository"
-    confirm install_utils "Install necessary utilities"
-    confirm install_libs "Install necessary libraries"
-    confirm install_python_pkgs "Install Python packages"
-    confirm install_oh_my_zsh "Install Oh-My-Zsh"
-    confirm install_tightvnc "Install TightVNC"
-    confirm install_nerd_fonts "Install Nerd fonts"
-    confirm build_tmux "Build tmux"
-    ;;
-  Darwin*)
-    confirm install_homebrew_pkgs "Install packages from HomeBrew"
-    confirm install_homebrew_casks "Install softwares from HomeBrew Cask"
-    confirm install_homebrew_fonts "Install fonts from HomeBrew"
-    confirm install_python_pkgs "Install Python packages"
-    confirm install_oh_my_zsh "Install Oh-My-Zsh"
-    ;;
-  *)
-    error "OS $OS_TYPE is not supported"
+Linux*)
+  confirm add_ppa_repo "Add ppa repository"
+  confirm install_utils "Install necessary utilities"
+  confirm install_libs "Install necessary libraries"
+  confirm install_python_pkgs "Install Python packages"
+  confirm install_oh_my_zsh "Install Oh-My-Zsh"
+  ;;
+Darwin*)
+  confirm install_homebrew_pkgs "Install packages from HomeBrew"
+  confirm install_homebrew_casks "Install softwares from HomeBrew Cask"
+  confirm install_homebrew_fonts "Install fonts from HomeBrew"
+  confirm install_python_pkgs "Install Python packages"
+  confirm install_oh_my_zsh "Install Oh-My-Zsh"
+  ;;
+*)
+  error "OS $OS_TYPE is not supported"
+  ;;
 esac
