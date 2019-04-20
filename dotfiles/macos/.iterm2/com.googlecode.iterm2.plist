@@ -1512,7 +1512,7 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/Documents</string>
+	<string>~</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -1553,9 +1553,9 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>2189 -714 606 469 1920 -840 1080 1920 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>764 240 918 512 0 0 1920 1058 </string>
+	<string>2113 -117 770 429 1920 -840 1080 1898 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>247 107 650 477 0 0 1920 1057 </string>
+	<string>1920 -840 1080 1898 1920 -840 1080 1898 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -2883,6 +2883,10 @@
 			<string>/Users/yuthon</string>
 		</dict>
 	</array>
+	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
+	<true/>
+	<key>NoSyncHaveWarnedAboutIncompatibleSoftware</key>
+	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
@@ -2894,7 +2898,7 @@
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>567411220.63238096</real>
+	<real>535707988.21908301</real>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenBookmark</key>
@@ -2943,7 +2947,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>~/.iterm2</string>
+	<string>/Users/yuthon/.env-setup/dotfiles/macos/.iterm2</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
@@ -2953,11 +2957,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/final.xml?shard=53</string>
+	<string>https://iterm2.com/appcasts/final.xml?shard=27</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-01-23T14:14:11Z</date>
+	<date>2019-04-17T14:03:45Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2975,7 +2979,7 @@
 	<key>TabStyle</key>
 	<integer>3</integer>
 	<key>TabStyleWithAutomaticOption</key>
-	<integer>4</integer>
+	<integer>3</integer>
 	<key>UseBorder</key>
 	<false/>
 	<key>UseLionStyleFullscreen</key>
@@ -7309,7 +7313,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.2.6</string>
+	<string>3.2.8</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

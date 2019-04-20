@@ -14,10 +14,14 @@ export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
 ZSH_THEME="ys"
 
 plugins=(
-  git autojump extract
-  copydir copybuffer copyfile cp
-  zsh-autosuggestions zsh-syntax-highlighting zsh-completions
-  colored-man-pages colorize
+  git
+  autojump
+  # extract
+  # copydir copybuffer copyfile cp
+  zsh-autosuggestions
+  zsh-syntax-highlightingj
+  zsh-completions
+  # colored-man-pages colorize
 )
 
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
@@ -286,4 +290,13 @@ setup_venv() {
 alias sv=setup_venv
 
 # fzf
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+# [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+
+# journal
+JOURNAL_ROOT=$HOME/Workspace/journal
+journal_grep() {
+  grep --include=\*.md -irnw $JOURNAL_ROOT -e $@
+}
+alias jj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT"
+alias vj="[ -d $JOURNAL_ROOT ] && mkdir -p $JOURNAL_ROOT/$(date +%Y)/; v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md"
+alias sj="[ -d $JOURNAL_ROOT ] && journal_grep"
