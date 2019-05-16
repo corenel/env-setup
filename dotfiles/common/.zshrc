@@ -297,6 +297,9 @@ JOURNAL_ROOT=$HOME/Workspace/journal
 journal_grep() {
   grep --include=\*.md -irnw $JOURNAL_ROOT -e $@
 }
+journal_create() {
+  [ -d $JOURNAL_ROOT ] && mkdir -p $JOURNAL_ROOT/$(date +%Y)/; v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+}
 alias jj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT"
-alias vj="[ -d $JOURNAL_ROOT ] && mkdir -p $JOURNAL_ROOT/$(date +%Y)/; v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md"
+alias vj=journal_create
 alias sj="[ -d $JOURNAL_ROOT ] && journal_grep"
