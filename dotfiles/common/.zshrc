@@ -19,7 +19,7 @@ plugins=(
   # extract
   # copydir copybuffer copyfile cp
   zsh-autosuggestions
-  zsh-syntax-highlightingj
+  zsh-syntax-highlighting
   zsh-completions
   # colored-man-pages colorize
 )

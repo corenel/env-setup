@@ -1,6 +1,6 @@
-export LD_LIBRARY_PATH="/usr/local/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64:/usr/lib:$LD_LIBRARY_PATH"
 export CUDA_HOME=/usr/local/cuda
 export PATH="$CUDA_HOME/bin:$HOME/.local/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/lib:$CUDA_HOME/lib64:$CUDA_HOME/extras/CUPTI/lib64:/usr/lib:$LD_LIBRARY_PATH"
 
 # linuxbrew
 [ -d "/home/linuxbrew/.linuxbrew/" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
@@ -30,7 +30,7 @@ setup_ros()
   # ZJUDancer humanoid project
   export ZJUDANCER_ROBOTID=5
   export ZJUDANCER_GUI=1
-  export ZJUDANCER_GPU=0
+  export ZJUDANCER_GPU=1
   export ZJUDANCER_TX2=0
 
   [ -f /opt/ros/kinetic/setup.zsh ] && source /opt/ros/kinetic/setup.zsh
