@@ -5,7 +5,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 export CUDA_HOME=/usr/local/cuda
-export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$DYLD_LIBRARY_PATH"
+export CUDA_DEV_HOME=/Developer/NVIDIA/CUDA-10.0
+export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$CUDA_HOME/extras/CUPTI/lib:$CUDA_DEV_HOME/lib:$DYLD_LIBRARY_PATH"
 export PATH="$CUDA_HOME/bin:$PATH"
 
 # homebrew
