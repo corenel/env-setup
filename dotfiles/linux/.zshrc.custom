@@ -30,10 +30,11 @@ setup_ros()
   # ZJUDancer humanoid project
   export ZJUDANCER_ROBOTID=5
   export ZJUDANCER_GUI=1
-  export ZJUDANCER_GPU=1
+  export ZJUDANCER_GPU=0
   export ZJUDANCER_TX2=0
+  export ZJUDANCER_ROS_DISTRO=melodic
 
-  [ -f /opt/ros/kinetic/setup.zsh ] && source /opt/ros/kinetic/setup.zsh
+  [ -z $ROS_DISTRO ] && [ -f /opt/ros/${ZJUDANCER_ROS_DISTRO}/setup.zsh ] && source /opt/ros/${ZJUDANCER_ROS_DISTRO}/setup.zsh
   [ -f $HOME/dancer-workspace/.zshrc.dancer ] && source $HOME/dancer-workspace/.zshrc.dancer
   # [ -f $HOME/humanoid-lib/devel/setup.zsh ] && source $HOME/humanoid-lib/devel/setup.zsh
   # [ -f $HOME/humanoid/devel/setup.zsh ] && source $HOME/humanoid/devel/setup.zsh
