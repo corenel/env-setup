@@ -98,7 +98,8 @@ export HOSTTYPE
 
 # EDITOR
 if _has nvim; then
-  export EDITOR='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+  export NVIM_TUI_ENABLE_TRUE_COLOR=1
+  export EDITOR=nvim VISUAL=nvim
 elif _has vim; then
   export EDITOR=vim VISUAL=vim
 elif _has vi; then
