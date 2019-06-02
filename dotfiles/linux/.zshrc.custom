@@ -1,11 +1,20 @@
+# LinuxBrew {{{
+
+[ -d "/home/linuxbrew/.linuxbrew/" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+[ -d "/home/linuxbrew/.linuxbrew/" ] && export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+[ -d "/home/linuxbrew/.linuxbrew/" ] && export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+
+# }}} LinuxBrew
+
+# CUDA {{{
+
 export CUDA_HOME=/usr/local/cuda
 export PATH="$CUDA_HOME/bin:$HOME/.local/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/lib:$CUDA_HOME/lib64:$CUDA_HOME/extras/CUPTI/lib64:/usr/lib:$LD_LIBRARY_PATH"
 
-# linuxbrew
-[ -d "/home/linuxbrew/.linuxbrew/" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
-[ -d "/home/linuxbrew/.linuxbrew/" ] && export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-[ -d "/home/linuxbrew/.linuxbrew/" ] && export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+# }}} CUDA
+
+# LINUX ALIASES {{{
 
 # package manager
 export apt_pref='apt-get' # change to apt-fast if you like
@@ -24,7 +33,9 @@ alias di='sudo dpkg -i'
 alias ss='$HOME/proxyservice on'
 alias ssk='$HOME/proxyservice off'
 
-# ROS
+# }}} LINUX ALIASES
+
+# ROS {{{
 setup_ros()
 {
   # ZJUDancer humanoid project
@@ -61,3 +72,5 @@ setup_ros()
   # alias loglevel="sudo vim $ROS_ROOT/config/rosconsole.config"
 }
 alias sr=setup_ros
+
+# }}} ROS

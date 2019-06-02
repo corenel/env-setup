@@ -1,16 +1,5 @@
-export DISABLE_AUTO_TITLE='true'
+# Oh-My-ZSH {{{
 export ZSH=$HOME/.oh-my-zsh
-export TERM=screen-256color
-export GTEST_COLOR=1
-[ -x "$(command -v nvim)" ] && export EDITOR='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-# export CXX="ccache clang++"
-# export CC="ccache clang"
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
-export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
-
 ZSH_THEME="ys"
 
 plugins=(
@@ -20,24 +9,149 @@ plugins=(
   # copydir copybuffer copyfile cp
   zsh-autosuggestions
   zsh-syntax-highlighting
-  zsh-completions
+  # zsh-completions
   # colored-man-pages colorize
 )
 
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 
-# # automatically run tmux when starting shell
-# if which tmux >/dev/null 2>&1; then
-#     # if no session is started, start a new session
-#     test -z ${TMUX} && tmux
+# }}} Oh-My-ZSH
 
-#     # when quitting tmux, try to attach
-#     while test -z ${TMUX}; do
-#         tmux attach || break
-#     done
-# fi
+# INTERNAL UTILITY FUNCTIONS {{{
 
-# Alias
+# Returns whether the given command is executable or aliased.
+_has() {
+  return $( whence $1 >/dev/null )
+}
+
+# Returns whether the given statement executed cleanly. Try to avoid this
+# because this slows down shell loading.
+_try() {
+  return $( eval $* >/dev/null 2>&1 )
+}
+
+# Returns whether the current host type is what we think it is. (HOSTTYPE is
+# set later.)
+_is() {
+  return $( [ "$HOSTTYPE" = "$1" ] )
+}
+
+# Returns whether out terminal supports color.
+_color() {
+  return $( [ -z "$INSIDE_EMACS" ] )
+}
+
+# Returns the version of a command if present, or n/a if unavailable.
+_versionof() {
+  if _has "$1"; then
+    echo "$1 $($1 --version)"
+  else
+    echo "$1 n/a"
+  fi
+}
+
+_log_status() {
+    tput setaf 6
+    echo $1
+    tput sgr0
+}
+
+_log_warning() {
+    tput setaf 3
+    echo $1
+    tput sgr0
+}
+
+_log_error() {
+    tput setaf 1
+    echo $1
+    tput sgr0
+}
+
+# }}} INTERNAL UTILITY FUNCTIONS
+
+# ENVIRONMENT VARIABLES {{{
+
+export DISABLE_AUTO_TITLE='true'
+export TERM=screen-256color
+# export CXX="ccache clang++"
+# export CC="ccache clang"
+export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
+
+# Utility variables.
+if which hostname >/dev/null 2>&1; then
+  HOSTNAME=`hostname`
+elif which uname >/dev/null 2>&1; then
+  HOSTNAME=`uname -n`
+else
+  HOSTNAME=unknown
+fi
+export HOSTNAME
+
+# HOSTTYPE = { Linux | OpenBSD | SunOS | etc. }
+if which uname >/dev/null 2>&1; then
+  HOSTTYPE=`uname -s`
+else
+  HOSTTYPE=unknown
+fi
+export HOSTTYPE
+
+# EDITOR
+if _has nvim; then
+  export EDITOR='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+elif _has vim; then
+  export EDITOR=vim VISUAL=vim
+elif _has vi; then
+  export EDITOR=vi VISUAL=vi
+fi
+
+# Overridable locale support.
+if [ -z $$LC_ALL ]; then
+  export LC_ALL=en_US.UTF-8
+fi
+if [ -z $LC_CTYPE ]; then
+  export LC_CTYPE=en_US.UTF-8
+fi
+if [ -z $LANG ]; then
+  export LANG=en_US.UTF-8
+fi
+if [ -z $LANGUAGE ]; then
+  export LANGUAGE=en_US.UTF-8
+fi
+
+# History control. Don't bother with history if we can't write to the file,
+# like if we're using sudo.
+if [ -w ~/.zsh_history -o -w ~ ]; then
+  SAVEHIST=100000
+  HISTSIZE=100000
+  HISTFILE=~/.zsh_history
+fi
+
+# }}} ENVIRONMENT VARIABLES
+
+# APPLICATION CUSTOMIZATIONS {{{
+
+# GNU grep
+if _color; then
+  export GREP_COLOR='1;32'
+fi
+
+# GNU and BSD ls colorization.
+if _color; then
+  export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=33:so=01;35:bd=33;01:cd=33;01:or=01;05;37;41:mi=01;37;41:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tz=01;31:*.rpm=01;31:*.cpio=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.xbm=01;35:*.xpm=01;35:*.png=01;35:*.tif=01;35:'
+  export LSCOLORS='ExGxFxdxCxDxDxcxcxxCxc'
+  export CLICOLOR=1
+fi
+
+# gtest
+if _color; then
+  export GTEST_COLOR=1
+fi
+
+# }}} APPLICATION CUSTOMIZATIONS
+
+# ALIASES {{{
+
 # edit config
 alias sc="source $HOME/.zshrc"
 alias st="tmux source $HOME/.tmux.conf"
@@ -46,10 +160,12 @@ alias zcc="$EDITOR $HOME/.zshrc.custom"
 alias zs="$EDITOR $HOME/.ssh/config"
 alias zv="$EDITOR $HOME/.vim/vimrc"
 alias zt="$EDITOR $HOME/.tmux.conf"
+
 # pull updates
 alias ud="cd $HOME/.dotfiles/ && git pull && cd -"
 alias udp="cd $HOME/.dotfiles-personal/ && git pull && cd -"
 alias uy="cd $HOME/.ysvim/ && git pull && cd -"
+
 # quick jump
 alias jd="[ -d $HOME/.dotfiles ] && cd $HOME/.dotfiles"
 alias jdp="[ -d $HOME/.dotfiles-personal ] && cd $HOME/.dotfiles-personal"
@@ -57,6 +173,7 @@ alias jv="[ -d $HOME/.ysvim ] && cd $HOME/.ysvim"
 alias jw="[ -d $HOME/Workspace ] && cd $HOME/Workspace"
 alias jg="[ -d $HOME/Github ] && cd $HOME/Github"
 alias jt="[ -d $HOME/.tmp ] && cd $HOME/.tmp"
+
 # ls (from common-aliases)
 alias l='ls -lFh'     #size,show type,human readable
 alias la='ls -lAFh'   #long list,show almost all,show type,human readable
@@ -67,17 +184,21 @@ alias ldot='ls -ld .*'
 alias lS='ls -1FSsh'
 alias lart='ls -1Fcart'
 alias lrt='ls -1Fcrt'
+
 # make
 alias mk='make -j`nproc`'
 alias mc='make clean'
+
 # git
 alias ci='git add . && git commit -m "ci" && git push'
+
 # grep
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 alias hst='fc -El 0'
 alias hsg='fc -El 0 | grep'
 alias psg='ps ax | grep'
+
 # head and tail
 # alias -g H='| head'
 # alias -g T='| tail'
@@ -89,11 +210,13 @@ alias psg='ps ax | grep'
 # alias -g NE="2> /dev/null"
 # alias -g NUL="> /dev/null 2>&1"
 # alias -g P="2>&1| pygmentize -l pytb"
+#
 # find
 alias fd='find . -type d -name' # find directories in current path
 alias ff='find . -type f -name' # find files in current path
 alias fdr='sudo find / -type d -name' # find directories in root path
 alias ffr='sudo find / -type f -name' # find files in root path
+
 # dangerous operations with prompt and verbose
 alias mv='mv -i -v'
 alias rm='rm -i -v'
@@ -101,6 +224,7 @@ alias cp='cp -v'
 alias chmod='chmod -v'
 alias chown='chown -v'
 alias rename='rename -v'
+
 # tmux
 alias t='tmux'
 alias tls='tmux list-sessions'
@@ -123,31 +247,28 @@ alias dfh='df -hlT'
 alias gput='watch -n 1 nvidia-smi'
 alias tree='tree -F -A -I CVS'
 
-# aria2c
+# search tool
+if _has rg; then
+  alias rg='rg --colors path:fg:green --colors match:fg:red'
+  alias ag=rg
+  alias ack=rg
+elif _has ag; then
+  alias ack=ag
+  alias ag='ag --color-path 1\;31 --color-match 1\;32 --color'
+elif _has ack; then
+  if ! _color; then
+    alias ack='ack --nocolor'
+  fi
+fi
+
+# misc
 alias ar='aria2c --conf-path=$HOME/.aria2/aria2.conf -D'
+alias v='$EDITOR'
+alias typora='open -a typora'
 
-# nvim
-alias v='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
-# alias vim='NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim'
+# }}} ALIASES
 
-# util func
-log_status() {
-    tput setaf 6
-    echo $1
-    tput sgr0
-}
-
-log_warning() {
-    tput setaf 3
-    echo $1
-    tput sgr0
-}
-
-log_error() {
-    tput setaf 1
-    echo $1
-    tput sgr0
-}
+# EXTERNAL UTILITY FUNCTIONS {{{
 
 tssh () {
   TPID=$(tmux list-panes -F "#{pane_active} #{pane_pid}" | awk "\$1==1 {\$1=\"\"; print}" | sed "s/^[ \\t]*//;s/[ \\t]*$//")
@@ -214,7 +335,7 @@ rto () {
     relpath=$(pwd | sed "s#$HOME#\$HOME#g")
     parentdir=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
 
-    log_status "rsync $relpath to $dsthost:$relpath ..."
+    _log_status "rsync $relpath to $dsthost:$relpath ..."
     if [ -e "$(pwd)/exclude.txt" ] ; then
       rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$parentdir
     elif [ -e "$(pwd)/.gitignore" ] ; then
@@ -232,7 +353,7 @@ rfrom () {
   relpath=$(pwd | sed "s#$HOME#\$HOME#g")
   parentdir=$(dirname $(pwd))
 
-  log_status "rsync $relpath from $dsthost:$relpath ..."
+  _log_status "rsync $relpath from $dsthost:$relpath ..."
   if [ -e "$(pwd)/exclude.txt" ] ; then
     rsync -avzP --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${relpath} ${parentdir}
   elif [ -e "$(pwd)/.gitignore" ] ; then
@@ -254,9 +375,8 @@ proxy () {
   export ftp_proxy=$http_proxy
   export NO_PROXY="local-delivery,local-auth"
   export no_proxy=$NO_PROXY
-  log_status "Proxy on"
+  _log_status "Proxy on"
 }
-
 noproxy () {
   unset http_proxy
   unset HTTPS_PROXY
@@ -264,11 +384,8 @@ noproxy () {
   unset FTP_PROXY
   unset https_proxy
   unset ftp_proxy
-  log_status "Proxy off"
+  _log_status "Proxy off"
 }
-
-# load specific config
-[ -f $HOME/.zshrc.custom ] && source $HOME/.zshrc.custom
 
 # virtualenv
 setup_venv() {
@@ -289,13 +406,14 @@ setup_venv() {
 }
 alias sv=setup_venv
 
-# fzf
-# [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-
 # journal
 JOURNAL_ROOT=$HOME/Workspace/journal
 journal_grep() {
-  grep --include=\*.md -irnw $JOURNAL_ROOT -e $@
+  if _has rg; then
+    rg -t md -e $@ $JOURNAL_ROOT
+  else
+    grep --include=\*.md -irnw $JOURNAL_ROOT -e $@
+  fi
 }
 journal_create() {
   [ -d $JOURNAL_ROOT ] && mkdir -p $JOURNAL_ROOT/$(date +%Y)/; v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
@@ -303,3 +421,47 @@ journal_create() {
 alias jj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT"
 alias vj=journal_create
 alias sj="[ -d $JOURNAL_ROOT ] && journal_grep"
+
+# search occurance of code and open with editor
+vack() {
+  if _has rg; then
+      $EDITOR `rg --color=never -l $@`
+  elif _has ag; then
+      $EDITOR `ag --nocolor -l $@`
+  else
+      $EDITOR `ack -l $@`
+  fi
+}
+alias vag=vack
+alias vrg=vack
+
+# quick commands to sync CWD between terminals.
+pin() {
+  rm -f ~/.pindir
+  echo $PWD >~/.pindir
+  chmod 0600 ~/.pindir >/dev/null 2>&1
+}
+pout() {
+  cd `cat ~/.pindir`
+}
+
+# a quick grep-for-processes.
+psl() {
+  if _is SunOS; then
+    ps -Af | grep -i $1 | grep -v grep
+  else
+    ps auxww | grep -i $1 | grep -v grep
+  fi
+}
+
+# }}} EXTERNAL UTILITY FUNCTIONS
+
+# CUSTOM CONFIG {{{
+
+# load specific config
+[ -f $HOME/.zshrc.custom ] && source $HOME/.zshrc.custom
+
+# }}} CUSTOM_CONFIG
+
+# Don't end with errors.
+true

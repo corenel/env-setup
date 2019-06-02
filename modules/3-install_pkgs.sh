@@ -47,13 +47,13 @@ install_oh_my_zsh() {
 
 install_homebrew_pkgs() {
   # pkgs
-  brew install zsh autojump tmux \
+  brew install zsh autojump tmux tmate \
     python pip-completion \
     watch cppcheck wget nvm gcc \
     htop reattach-to-user-namespace \
     ffmpeg cmake tree openssh \
     clang-format m-cli graphviz ccat \
-    gpg ag ack fzf hadolint tldr
+    gpg rg ag ack fzf hadolint tldr
 
   # fzf
   /usr/local/opt/fzf/install
