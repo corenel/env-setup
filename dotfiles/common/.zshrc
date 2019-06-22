@@ -331,18 +331,25 @@ replace_encoding () {
 
 # rsync to distination host
 rto () {
-  for dsthost in "${@}"
+  for inputpath in "${@}"
   do
     relpath=$(pwd | sed "s#$HOME#\$HOME#g")
-    parentdir=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
-
-    _log_status "rsync $relpath to $dsthost:$relpath ..."
-    if [ -e "$(pwd)/exclude.txt" ] ; then
-      rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$parentdir
-    elif [ -e "$(pwd)/.gitignore" ] ; then
-      rsync -avzP --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$parentdir
+    if [[ $inputpath == *":"* ]] ; then
+      dstpath=${inputpath#*:}
+      dsthost=${inputpath%:*}
+      _log_status "rsync $relpath to $dsthost:$dstpath ..."
     else
-      rsync -avzP $(pwd) $dsthost:$parentdir
+      dstpath=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
+      dsthost=${inputpath}
+      _log_status "rsync $relpath to $dsthost:$relpath ..."
+    fi
+
+    if [ -e "$(pwd)/exclude.txt" ] ; then
+      rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$dstpath
+    elif [ -e "$(pwd)/.gitignore" ] ; then
+      rsync -avzP --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$dstpath
+    else
+      rsync -avzP $(pwd) $dsthost:$dstpath
     fi
     echo
   done
