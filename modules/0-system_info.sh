@@ -12,7 +12,7 @@ system_status() {
   status "(*) System:"
   echo "    - User: $USER"
   echo "    - Hostname: $HOSTNAME"
-  if [ $DISTRIB_DESCRIPTION -e "" ]; then
+  if [ ! -z $DISTRIB_DESCRIPTION ]; then
     echo "    - OS: $DISTRIB_DESCRIPTION - $DISTRIB_CODENAME"
   else
     echo "    - OS: $OS_TYPE"

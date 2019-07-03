@@ -1549,7 +1549,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>416 223 1028 77 0 0 1920 1058 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>2150 289 620 392 1920 -840 1080 1898 </string>
+	<string>650 499 620 392 0 0 1920 1058 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>2189 -714 606 469 1920 -840 1080 1920 </string>
 	<key>NSWindow Frame SharedPreferences</key>
@@ -2961,13 +2961,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-04-17T14:03:45Z</date>
+	<date>2019-06-11T14:25:31Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>SmartPlacement</key>
 	<true/>
 	<key>SwitchPaneModifier</key>
@@ -7313,7 +7313,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.2.8</string>
+	<string>3.2.9</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
