@@ -9,25 +9,33 @@ CUDA_VERSION="9-0"
 CUDA_ARCH="6.2"
 TMP_DIR=/tmp
 
+prompt_default OPENCV_VERSION "OpenCV version [${OPENCV_VERSION}]"
+prompt_default CUDA_VERSION "CUDA version [${CUDA_VERSION}]"
+prompt_default CUDA_ARCH "CUDA arch [${CUDA_ARCH}]"
+
 status "Install dependencies of OpenCV"
-sudo apt-get install -y \
-    libglew-dev \
-    libtiff5-dev \
-    zlib1g-dev \
-    libjpeg-dev \
-    libpng12-dev \
-    libjasper-dev \
-    libavcodec-dev \
-    libavformat-dev \
-    libavutil-dev \
-    libpostproc-dev \
-    libswscale-dev \
-    libeigen3-dev \
-    libtbb-dev \
-    libgtk2.0-dev \
-    pkg-config
-sudo apt-get install -y python-dev python-numpy python-py python-pytest
-sudo apt-get install -y python3-dev python3-numpy python3-py python3-pytest
+sudo apt-get install -yq \
+  libglew-dev \
+  libtiff5-dev \
+  zlib1g-dev \
+  libjpeg-dev \
+  libpng12-dev \
+  libjasper-dev \
+  libavcodec-dev \
+  libavformat-dev \
+  libavutil-dev \
+  libpostproc-dev \
+  libswscale-dev \
+  libeigen3-dev \
+  libtbb-dev \
+  libgtk2.0-dev \
+  pkg-config
+sudo apt-get install -yq gstreamer1.0* \
+  libgstreamer1.0-dev \
+  libgstreamer-plugins-base1.0-dev
+sudo apt-get install -yq unzip
+sudo apt-get install -yq python-dev python-numpy python-py python-pytest
+sudo apt-get install -yq python3-dev python3-numpy python3-py python3-pytest
 
 status "Downloading source code of OpenCV"
 pushd ${TMP_DIR}
@@ -58,8 +66,6 @@ if [ ${ZJUDANCER_GPU} -eq "1" ]; then
     -DWITH_OPENCL=OFF \
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
-    -DWITH_GSTREAMER=OFF \
-    -DWITH_GSTREAMER_0_10=OFF \
     -DWITH_CUDA=ON \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
@@ -92,8 +98,6 @@ elif [ -x "$(command -v nvcc)" ]; then
     -DWITH_OPENCL=OFF \
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
-    -DWITH_GSTREAMER=OFF \
-    -DWITH_GSTREAMER_0_10=OFF \
     -DWITH_CUDA=ON \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
@@ -126,8 +130,6 @@ else
     -DWITH_OPENCL=OFF \
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
-    -DWITH_GSTREAMER=OFF \
-    -DWITH_GSTREAMER_0_10=OFF \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
     -DWITH_TBB=ON \
