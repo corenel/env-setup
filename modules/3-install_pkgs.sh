@@ -9,21 +9,20 @@ if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
 fi
 
 add_ppa_repo() {
-  sudo apt-get install software-properties-common
+  sudo apt-get install -yq software-properties-common
   sudo add-apt-repository -y ppa:neovim-ppa/stable
-  sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 https://launchpad.proxy.ustclug.org#ig' {} \;
-  sudo apt-get update
+  sudo apt-get update -yq
 }
 
 install_utils() {
-  sudo apt-get install -y --allow-unauthenticated \
+  sudo apt-get install -yq --allow-unauthenticated \
     build-essential openssh-server wireless-tools git \
     wget zsh htop vim curl cmake ccache clang autojump \
     xclip xsel neovim supervisor
 }
 
 install_libs() {
-  sudo apt-get install -y \
+  sudo apt-get install -yq \
     python3-dev python3-pip python-dev python-pip libudev-dev libx264-dev
 }
 
