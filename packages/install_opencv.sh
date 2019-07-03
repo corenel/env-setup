@@ -5,13 +5,11 @@ if [ -z $COMMON_SOURCED ]; then
 fi
 
 OPENCV_VERSION=3.4.5
-CUDA_VERSION="9-0"
 CUDA_ARCH="6.2"
 TMP_DIR=/tmp
 
-prompt_default OPENCV_VERSION "OpenCV version [${OPENCV_VERSION}]"
-prompt_default CUDA_VERSION "CUDA version [${CUDA_VERSION}]"
-prompt_default CUDA_ARCH "CUDA arch [${CUDA_ARCH}]"
+prompt_default OPENCV_VERSION "OpenCV Version [${OPENCV_VERSION}]"
+prompt_default CUDA_ARCH "CUDA Arch [${CUDA_ARCH}]"
 
 status "Install dependencies of OpenCV"
 sudo apt-get install -yq \
