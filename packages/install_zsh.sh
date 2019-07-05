@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-version=5.4.2
-filename=zsh-$version.tar.gz
+if [ -z $COMMON_SOURCED ]; then
+  source include/common.sh
+fi
+
+ZSH_VERSION=5.4.2
+TMP_DIR=/tmp
+
+prompt_default ZSH_VERSION "Zsh Version [${ZSH_VERSION}]"
 
 # install dependencies
 sudo apt-get install -y git-core gcc make autoconf yodl libncursesw5-dev texinfo
@@ -10,17 +16,16 @@ sudo apt-get install -y git-core gcc make autoconf yodl libncursesw5-dev texinfo
 sudo apt-get remove --purge zsh
 
 # enter temp directory
-mkdir -p $HOME/.tmp
-cd $HOME/.tmp
+pushd ${TMP_DIR}
 
 # check if zsh source directory exists
-if [[ ! -d filename ]]; then
-    wget "http://www.zsh.org/pub/zsh-$version.tar.gz" &&
-    tar -xvf "zsh-$version.tar.gz"
+if [[ ! -d zsh-{ZSH_VERSION} ]]; then
+    wget "http://www.zsh.org/pub/zsh-${ZSH_VERSION}.tar.gz" &&
+    tar -xvf "zsh-${ZSH_VERSION}.tar.gz"
 fi
 
 # bulid and install zsh
-cd "zsh-$version"
+cd "zsh-${ZSH_VERSION}"
 make clean && make dist-clean
 ./configure \
   --prefix=/usr \
@@ -47,3 +52,5 @@ make clean && make dist-clean
 sudo chsh /usr/bin/zsh ${USER}
 # sudo update-alternatives --install /usr/bin/zsh zsh /bin/zsh-$version 1
 # sudo update-alternatives --set zsh /bin/zsh-$version
+
+popd

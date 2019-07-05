@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-version="v8.0.1241"
+if [ -z $COMMON_SOURCED ]; then
+  source include/common.sh
+fi
+
+VIM_VERSION="v8.0.1241"
+TMP_DIR=/tmp
+
+prompt_default VIM_VERSION "Vim Version [${VIM_VERSION}]"
 
 # install dependencies
 sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
@@ -17,17 +24,16 @@ sudo apt-get remove --purge vim vim-runtime gvim vim-gnome vim-tiny vim-gui-comm
 sudo rm -rf /usr/local/share/vim /usr/bin/vim
 
 # get vim source
-mkdir -p $HOME/.tmp
-cd $HOME/.tmp
-wget "https://github.com/vim/vim/archive/$version.tar.gz"
-tar -xvf "$version.tar.gz"
+pushd ${TMP_DIR}
+wget "https://github.com/vim/vim/archive/${VIM_VERSION}.tar.gz"
+tar -xvf "${VIM_VERSION}.tar.gz"
 
 # if ./configure is failed due to lua, try symbol link manually
 sudo ln -s /usr/lib/x86_64-linux-gnu/libluajit-5.1.so.2 /usr/lib/x86_64-linux-gnu/libluajit-5.1.so
 sudo ln -s /usr/include/lua5.1 /usr/include/lua
 
 # build vim with python3 and lua support
-cd "$version"
+cd "${VIM_VERSION}"
 ./configure --with-features=huge \
             --prefix=/usr/local \
             --enable-multibyte \
@@ -53,3 +59,5 @@ sudo update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
 sudo update-alternatives --set editor /usr/local/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
 sudo update-alternatives --set vi /usr/local/bin/vim
+
+popd
