@@ -25,12 +25,13 @@ install_docker() {
   sudo apt-get install docker-ce
 
   # test hello-world
-  sudo docker run hello-world
+  # sudo docker run hello-world
 
   # non-root user
   sudo groupadd docker
   sudo usermod -aG docker $USER
-  docker run hello-world
+  warning "Please log out and log in to take effects"
+  # docker run hello-world
 }
 
 install_nvidia_docker() {
