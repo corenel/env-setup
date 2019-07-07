@@ -38,11 +38,11 @@ status "Downloading source code of OpenCV"
 pushd ${TMP_DIR}
 if [[ ! -d "opencv-${OPENCV_VERSION}" ]]; then
   wget --no-check-certificate https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip -O opencv.zip
-  unzip ${OPENCV_VERSION}.zip
+  unzip opencv.zip
 fi
 if [[ ! -d "opencv_contrib-${OPENCV_VERSION}" ]]; then
   wget --no-check-certificate https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip -O opencv_contrib.zip
-  unzip ${OPENCV_VERSION}_contrib.zip
+  unzip opencv_contrib.zip
 fi
 
 status "Building OpenCV"
