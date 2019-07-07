@@ -43,7 +43,7 @@ setup_ros()
   export ZJUDANCER_GUI=1
   export ZJUDANCER_GPU=0
   export ZJUDANCER_TX2=0
-  export ZJUDANCER_ROS_DISTRO=kinetic
+  export ZJUDANCER_ROS_DISTRO=melodic
 
   [ -z $ROS_DISTRO ] && [ -f /opt/ros/${ZJUDANCER_ROS_DISTRO}/setup.zsh ] && source /opt/ros/${ZJUDANCER_ROS_DISTRO}/setup.zsh
   [ -f $HOME/dancer-workspace/.zshrc.dancer ] && source $HOME/dancer-workspace/.zshrc.dancer
