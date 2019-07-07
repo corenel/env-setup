@@ -4,7 +4,7 @@ if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
 
-OPENCV_VERSION=3.4.5
+OPENCV_VERSION=3.4.6
 CUDA_ARCH="6.2"
 TMP_DIR=/tmp
 
@@ -28,9 +28,8 @@ sudo apt-get install -yq \
   libtbb-dev \
   libgtk2.0-dev \
   pkg-config
-sudo apt-get install -yq gstreamer1.0* \
-  libgstreamer1.0-dev \
-  libgstreamer-plugins-base1.0-dev
+sudo apt-get install -yq ffmpeg
+sudo apt-get install -yq libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev
 sudo apt-get install -yq unzip
 sudo apt-get install -yq python-dev python-numpy python-py python-pytest
 sudo apt-get install -yq python3-dev python3-numpy python3-py python3-pytest
@@ -38,14 +37,18 @@ sudo apt-get install -yq python3-dev python3-numpy python3-py python3-pytest
 status "Downloading source code of OpenCV"
 pushd ${TMP_DIR}
 if [[ ! -d "opencv-${OPENCV_VERSION}" ]]; then
-  wget --no-check-certificate https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
+  wget --no-check-certificate https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip -O opencv.zip
   unzip ${OPENCV_VERSION}.zip
+fi
+if [[ ! -d "opencv_contrib-${OPENCV_VERSION}" ]]; then
+  wget --no-check-certificate https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip -O opencv_contrib.zip
+  unzip ${OPENCV_VERSION}_contrib.zip
 fi
 
 status "Building OpenCV"
 cd opencv-${OPENCV_VERSION}
 mkdir -p build && cd build
-if [ ${ZJUDANCER_GPU} -eq "1" ]; then
+if [[ ${ZJUDANCER_GPU} == "1" ]]; then
   echo 'Build OpenCV on Jetson Tegra with CUDA'
   cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -56,7 +59,7 @@ if [ ${ZJUDANCER_GPU} -eq "1" ]; then
     -DBUILD_JPEG=OFF \
     -DBUILD_JASPER=OFF \
     -DBUILD_ZLIB=OFF \
-    -DBUILD_EXAMPLES=ON \
+    -DBUILD_EXAMPLES=OFF \
     -DBUILD_opencv_java=OFF \
     -DBUILD_opencv_python2=ON \
     -DBUILD_opencv_python3=ON \
@@ -64,6 +67,7 @@ if [ ${ZJUDANCER_GPU} -eq "1" ]; then
     -DWITH_OPENCL=OFF \
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
+    -DWITH_GSTREAMER=ON \
     -DWITH_CUDA=ON \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
@@ -89,13 +93,14 @@ elif [ -x "$(command -v nvcc)" ]; then
     -DBUILD_JPEG=OFF \
     -DBUILD_JASPER=OFF \
     -DBUILD_ZLIB=OFF \
-    -DBUILD_EXAMPLES=ON \
+    -DBUILD_EXAMPLES=OFF \
     -DBUILD_opencv_java=OFF \
     -DBUILD_opencv_python2=ON \
     -DBUILD_opencv_python3=ON \
     -DWITH_OPENCL=OFF \
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
+    -DWITH_GSTREAMER=ON \
     -DWITH_CUDA=ON \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
@@ -107,6 +112,7 @@ elif [ -x "$(command -v nvcc)" ]; then
     -DCUDA_ARCH_PTX="" \
     -DINSTALL_C_EXAMPLES=ON \
     -DINSTALL_TESTS=OFF \
+    -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_VERSION}/modules \
     .. && \
     make && \
     sudo make install
@@ -121,18 +127,20 @@ else
     -DBUILD_JPEG=OFF \
     -DBUILD_JASPER=OFF \
     -DBUILD_ZLIB=OFF \
-    -DBUILD_EXAMPLES=ON \
+    -DBUILD_EXAMPLES=OFF \
     -DBUILD_opencv_java=OFF \
     -DBUILD_opencv_python2=ON \
     -DBUILD_opencv_python3=ON \
     -DWITH_OPENCL=OFF \
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
+    -DWITH_GSTREAMER=ON \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
     -DWITH_TBB=ON \
     -DWITH_1394=OFF \
     -DWITH_OPENEXR=OFF \
+    -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_VERSION}/modules \
     -DINSTALL_C_EXAMPLES=ON \
     -DINSTALL_TESTS=OFF \
     .. && \
