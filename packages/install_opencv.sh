@@ -68,7 +68,12 @@ if [[ ${ZJUDANCER_GPU} == "1" ]]; then
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
+    -DWITH_V4L=ON \
     -DWITH_CUDA=ON \
+    -DWITH_NVCUVID=OFF \
+    -DWITH_CUBLAS=OFF \
+    -DENABLE_FAST_MATH=1 \
+    -DCUDA_FAST_MATH=1 \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
     -DWITH_TBB=ON \
@@ -77,7 +82,8 @@ if [[ ${ZJUDANCER_GPU} == "1" ]]; then
     -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda \
     -DCUDA_ARCH_BIN=${CUDA_ARCH} \
     -DCUDA_ARCH_PTX="" \
-    -DINSTALL_C_EXAMPLES=ON \
+    -DINSTALL_C_EXAMPLES=OFF \
+    -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
     .. && \
     make && \
@@ -101,7 +107,12 @@ elif [ -x "$(command -v nvcc)" ]; then
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
+    -DWITH_V4L=ON \
     -DWITH_CUDA=ON \
+    -DWITH_NVCUVID=OFF \
+    -DWITH_CUBLAS=ON \
+    -DENABLE_FAST_MATH=1 \
+    -DCUDA_FAST_MATH=1 \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
     -DWITH_TBB=ON \
@@ -110,7 +121,8 @@ elif [ -x "$(command -v nvcc)" ]; then
     -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda \
     -DCUDA_ARCH_BIN=${CUDA_ARCH} \
     -DCUDA_ARCH_PTX="" \
-    -DINSTALL_C_EXAMPLES=ON \
+    -DINSTALL_C_EXAMPLES=OFF \
+    -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
     -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_VERSION}/modules \
     .. && \
@@ -135,13 +147,16 @@ else
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
+    -DWITH_V4L=ON \
+    -DENABLE_FAST_MATH=1 \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
     -DWITH_TBB=ON \
     -DWITH_1394=OFF \
     -DWITH_OPENEXR=OFF \
     -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_VERSION}/modules \
-    -DINSTALL_C_EXAMPLES=ON \
+    -DINSTALL_C_EXAMPLES=OFF \
+    -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
     .. && \
     make && \
