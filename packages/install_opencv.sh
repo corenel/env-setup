@@ -71,7 +71,7 @@ if [[ ${ZJUDANCER_GPU} == "1" ]]; then
     -DWITH_V4L=ON \
     -DWITH_CUDA=ON \
     -DWITH_NVCUVID=OFF \
-    -DWITH_CUBLAS=OFF \
+    -DWITH_CUBLAS=ON \
     -DENABLE_FAST_MATH=1 \
     -DCUDA_FAST_MATH=1 \
     -DWITH_GTK=ON \
