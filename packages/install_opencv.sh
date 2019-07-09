@@ -59,6 +59,8 @@ if [[ ${ZJUDANCER_GPU} == "1" ]]; then
     -DBUILD_JPEG=OFF \
     -DBUILD_JASPER=OFF \
     -DBUILD_ZLIB=OFF \
+    -DBUILD_TESTS=OFF \
+    -DBUILD_PERF_TESTS=OFF \
     -DBUILD_EXAMPLES=OFF \
     -DBUILD_opencv_java=OFF \
     -DBUILD_opencv_python2=ON \
@@ -68,7 +70,7 @@ if [[ ${ZJUDANCER_GPU} == "1" ]]; then
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
-    -DWITH_V4L=ON \
+    -DWITH_LIBV4L=ON \
     -DWITH_CUDA=ON \
     -DWITH_NVCUVID=OFF \
     -DWITH_CUBLAS=ON \
@@ -99,6 +101,8 @@ elif [ -x "$(command -v nvcc)" ]; then
     -DBUILD_JPEG=OFF \
     -DBUILD_JASPER=OFF \
     -DBUILD_ZLIB=OFF \
+    -DBUILD_TESTS=OFF \
+    -DBUILD_PERF_TESTS=OFF \
     -DBUILD_EXAMPLES=OFF \
     -DBUILD_opencv_java=OFF \
     -DBUILD_opencv_python2=ON \
@@ -107,7 +111,7 @@ elif [ -x "$(command -v nvcc)" ]; then
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
-    -DWITH_V4L=ON \
+    -DWITH_LIBV4L=ON \
     -DWITH_CUDA=ON \
     -DWITH_NVCUVID=OFF \
     -DWITH_CUBLAS=ON \
@@ -139,6 +143,8 @@ else
     -DBUILD_JPEG=OFF \
     -DBUILD_JASPER=OFF \
     -DBUILD_ZLIB=OFF \
+    -DBUILD_TESTS=OFF \
+    -DBUILD_PERF_TESTS=OFF \
     -DBUILD_EXAMPLES=OFF \
     -DBUILD_opencv_java=OFF \
     -DBUILD_opencv_python2=ON \
@@ -147,7 +153,7 @@ else
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
-    -DWITH_V4L=ON \
+    -DWITH_LIBV4L=ON \
     -DENABLE_FAST_MATH=1 \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
