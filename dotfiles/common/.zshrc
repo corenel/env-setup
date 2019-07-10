@@ -395,25 +395,6 @@ noproxy () {
   _log_status "Proxy off"
 }
 
-# virtualenv
-setup_venv() {
-  export WORKON_HOME=$HOME/.virtualenvs
-  if [ -f "$brew_prefix/bin/python3" ] ; then
-    if [ -e "$brew_prefix/bin/virtualenvwrapper.sh" ] ; then
-      export VIRTUALENVWRAPPER_PYTHON="$brew_prefix/bin/python3"
-      source "$brew_prefix/bin/virtualenvwrapper.sh"
-    fi
-  else
-    export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-    [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
-  fi
-
-  # export PYTHONPATH="$VIRTUAL_ENV/usr/local/lib/python3.6/site-packages:$PYTHONPATH"
-  export PKG_CONFIG_PATH="$VIRTUAL_ENV/usr/local/lib/pkgconfig/"
-  export LD_LIBRARY_PATH="$VIRTUAL_ENV/usr/local/lib/:$LD_LIBRARY_PATH"
-}
-alias sv=setup_venv
-
 # journal
 JOURNAL_ROOT=$HOME/Workspace/journal
 journal_grep() {
@@ -470,6 +451,41 @@ psl() {
 [ -f $HOME/.zshrc.custom ] && source $HOME/.zshrc.custom
 
 # }}} CUSTOM_CONFIG
+
+# UTILITIES {{{
+
+# virtualenv
+setup_venv() {
+  export WORKON_HOME=$HOME/.virtualenvs
+  if [ -f "$brew_prefix/bin/python3" ] ; then
+    if [ -e "$brew_prefix/bin/virtualenvwrapper.sh" ] ; then
+      export VIRTUALENVWRAPPER_PYTHON="$brew_prefix/bin/python3"
+      source "$brew_prefix/bin/virtualenvwrapper.sh"
+    fi
+  else
+    export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+    [ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+  fi
+
+  # export PYTHONPATH="$VIRTUAL_ENV/usr/local/lib/python3.6/site-packages:$PYTHONPATH"
+  export PKG_CONFIG_PATH="$VIRTUAL_ENV/usr/local/lib/pkgconfig/"
+  export LD_LIBRARY_PATH="$VIRTUAL_ENV/usr/local/lib/:$LD_LIBRARY_PATH"
+}
+alias sv=setup_venv
+
+# miniconda3
+setup_conda() {
+  . $HOME/miniconda3/etc/profile.d/conda.sh
+}
+alias scd=setup_conda
+alias cda="conda activate"
+alias cdd="conda deactivate"
+alias cdi="conda install"
+alias cdup="conda update"
+alias cdug="conda upgrade"
+alias cdc="conda create"
+
+# }}} UTILITIES
 
 # Don't end with errors.
 true

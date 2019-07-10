@@ -53,11 +53,6 @@ alias travis_on='[ -f $HOME/.travis/travis.sh ] && source /Users/yuthon/.travis/
 # iterm utilities
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# miniconda3
-setup_conda() {
-  . $HOME/miniconda3/etc/profile.d/conda.sh
-}
-
 # vscode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
