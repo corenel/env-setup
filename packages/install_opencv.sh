@@ -71,7 +71,6 @@ install_opencv_embedded_gpu() {
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
-    -DWITH_LIBV4L=ON \
     -DWITH_CUDA=ON \
     -DWITH_NVCUVID=OFF \
     -DWITH_CUBLAS=ON \
@@ -115,7 +114,6 @@ install_opencv_embedded_cpu() {
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
-    -DWITH_LIBV4L=ON \
     -DENABLE_FAST_MATH=1 \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
@@ -153,7 +151,6 @@ install_opencv_desktop_gpu() {
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
-    -DWITH_LIBV4L=ON \
     -DWITH_CUDA=ON \
     -DWITH_NVCUVID=OFF \
     -DWITH_CUBLAS=ON \
@@ -197,7 +194,6 @@ install_opencv_desktop_cpu() {
     -DWITH_OPENMP=OFF \
     -DWITH_FFMPEG=ON \
     -DWITH_GSTREAMER=ON \
-    -DWITH_LIBV4L=ON \
     -DENABLE_FAST_MATH=1 \
     -DWITH_GTK=ON \
     -DWITH_VTK=OFF \
