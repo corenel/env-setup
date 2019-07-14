@@ -56,5 +56,5 @@ install_nvidia_docker() {
 }
 
 
-confirm install_docker "Install Docker"
+confirm install_docker "Install docker"
 confirm install_nvidia_docker "Install nvidia-docker"
