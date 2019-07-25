@@ -198,7 +198,7 @@ alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 alias hst='fc -El 0'
 alias hsg='fc -El 0 | grep'
-alias psg='ps ax | grep'
+alias psg='ps aux | grep'
 
 # head and tail
 # alias -g H='| head'
