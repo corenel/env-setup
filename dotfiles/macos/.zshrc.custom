@@ -56,4 +56,7 @@ alias travis_on='[ -f $HOME/.travis/travis.sh ] && source /Users/yuthon/.travis/
 # vscode
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
+# mactex
+export PATH="$PATH:/Library/TeX/texbin"
+
 # }}} UTILITIES

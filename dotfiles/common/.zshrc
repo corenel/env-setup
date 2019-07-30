@@ -475,15 +475,19 @@ alias sv=setup_venv
 
 # miniconda3
 setup_conda() {
-  . $HOME/miniconda3/etc/profile.d/conda.sh
+  if [[ -f $HOME/miniconda3/etc/profile.d/conda.sh ]]; then
+    . $HOME/miniconda3/etc/profile.d/conda.sh
+  else
+    export PATH="$HOME/miniconda3/bin:$PATH"
+  fi
+  alias cda="conda activate"
+  alias cdd="conda deactivate"
+  alias cdi="conda install"
+  alias cdup="conda update"
+  alias cdug="conda upgrade"
+  alias cdc="conda create"
 }
 alias scd=setup_conda
-alias cda="conda activate"
-alias cdd="conda deactivate"
-alias cdi="conda install"
-alias cdup="conda update"
-alias cdug="conda upgrade"
-alias cdc="conda create"
 
 # }}} UTILITIES
 
