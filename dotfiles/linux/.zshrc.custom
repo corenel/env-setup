@@ -8,9 +8,12 @@
 
 # CUDA {{{
 
-export CUDA_HOME=/usr/local/cuda
-export PATH="$CUDA_HOME/bin:$HOME/.local/bin:$PATH"
-export LD_LIBRARY_PATH="/usr/local/lib:$CUDA_HOME/lib64:$CUDA_HOME/extras/CUPTI/lib64:/usr/lib:$LD_LIBRARY_PATH"
+export CUDA_HOME="/usr/local/cuda"
+export PATH="${CUDA_HOME}/bin:${HOME/.local/bin}:${PATH}"
+export C_INCLUDE_PATH="${CUDA_HOME}/include:${C_INCLUDE_PATH}"
+export CPLUS_INCLUDE_PATH="${CUDA_HOME}/include:${CPLUS_INCLUDE_PATH}"
+export CPATH="${CUDA_HOME}/include:${CPATH}"
+export LD_LIBRARY_PATH="${CUDA_HOME}/lib64:${CUDA_HOME}/extras/CUPTI/lib64:/usr/local/lib:/usr/lib:${LD_LIBRARY_PATH}"
 
 # }}} CUDA
 
@@ -60,7 +63,7 @@ setup_ros()
   alias rcore='roscore &'
   alias rl='roslaunch'
   alias rr='rosrun'
-  alias rlog="sudo vim $ROS_ROOT/config/rosconsole.config"
+  alias rlog="sudo vim ${ROS_ROOT}/config/rosconsole.config"
 
   # alias sim='roslaunch dlaunch sim.launch'
   # alias config='rl dconfig dconfig.launch'
