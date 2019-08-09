@@ -59,10 +59,10 @@ use_mirror_sources() {
     fi
   fi
 
-  if confirmation "Replace launch ppa sources"; then
-    sudo apt-get install -y apt-transport-https
-    sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 https://launchpad.proxy.ustclug.org#ig' {} \;
-  fi
+  # if confirmation "Replace launch ppa sources"; then
+  #   sudo apt-get install -y apt-transport-https
+  #   sudo find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sed -i.bak -r 's#deb(-src)?\s*http(s)?://ppa.launchpad.net#deb\1 https://launchpad.proxy.ustclug.org#ig' {} \;
+  # fi
 
   if confirmation "Use https USTC mirror"; then
     sudo apt-get install -y apt-transport-https
