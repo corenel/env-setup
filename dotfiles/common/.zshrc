@@ -4,6 +4,7 @@ ZSH_THEME="ys"
 
 plugins=(
   git
+  sudo
   autojump
   # extract
   # copydir copybuffer copyfile cp
