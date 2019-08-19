@@ -32,7 +32,7 @@ symlink() {
       mv -v ${dst} ${backup}
     fi
   fi
-  ln -sf ${src} ${dst}
+  ln -sfn ${src} ${dst}
 }
 
 link_dotfiles() {
