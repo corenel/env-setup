@@ -5,6 +5,7 @@ ZSH_THEME="ys"
 plugins=(
   git
   sudo
+  docker
   autojump
   # extract
   # copydir copybuffer copyfile cp

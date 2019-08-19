@@ -8,7 +8,7 @@ CMAKE_VERSION=3.14
 CMAKE_BUILD=1
 TMP_DIR=/tmp
 
-prompt_default CMAKE_VERSION "CMake Version [${CMAKE_VERSION}]"
+prompt_default CMAKE_VERSION "CMake Major Version [${CMAKE_VERSION}]"
 prompt_default CMAKE_BUILD "CMake Build [${CMAKE_BUILD}]"
 
 # purge installed cmake
