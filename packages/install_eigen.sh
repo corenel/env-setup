@@ -7,7 +7,7 @@ fi
 EIGEN_VERSION=3.3.7
 TMP_DIR=/tmp
 
-prompt_default EIGEN_VERSION "Eigen Version [${CMAKE_VERSION}]"
+prompt_default EIGEN_VERSION "Eigen Version [${EIGEN_VERSION}]"
 
 pushd ${TMP_DIR}
 
