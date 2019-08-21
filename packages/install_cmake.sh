@@ -12,7 +12,12 @@ prompt_default CMAKE_VERSION "CMake Major Version [${CMAKE_VERSION}]"
 prompt_default CMAKE_BUILD "CMake Build [${CMAKE_BUILD}]"
 
 # purge installed cmake
-sudo apt remove --purge --auto-remove cmake
+if confirmation "Purge installed cmake"; then
+  sudo apt remove --purge --auto-remove cmake
+fi
+
+# install dependencies for SSL support
+sudo apt-get install libcurl4-gnutls-dev zlib1g-dev
 
 # get latest cmake source
 pushd ${TMP_DIR}
@@ -21,7 +26,7 @@ tar -xzvf cmake-${CMAKE_VERSION}.${CMAKE_BUILD}.tar.gz
 cd cmake-${CMAKE_VERSION}.${CMAKE_BUILD}/
 
 # build cmake
-./bootstrap
+./bootstrap --system-curl # use system curl to enable SSL support
 make
 sudo make install
 
