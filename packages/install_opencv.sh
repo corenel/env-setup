@@ -87,6 +87,7 @@ install_opencv_embedded_gpu() {
     -DINSTALL_C_EXAMPLES=OFF \
     -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
+    -DOPENCV_ENABLE_NONFREE=ON \
     .. && \
     make && \
     sudo make install
@@ -123,6 +124,7 @@ install_opencv_embedded_cpu() {
     -DINSTALL_C_EXAMPLES=OFF \
     -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
+    -DOPENCV_ENABLE_NONFREE=ON \
     .. && \
     make && \
     sudo make install
@@ -130,7 +132,7 @@ install_opencv_embedded_cpu() {
 
 install_opencv_desktop_gpu() {
   echo 'Build OpenCV on PC with CUDA'
-  CUDA_ARCH="6.2"
+  CUDA_ARCH="6.1"
   prompt_default CUDA_ARCH "CUDA Arch [${CUDA_ARCH}]"
   cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -168,6 +170,7 @@ install_opencv_desktop_gpu() {
     -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
     -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_VERSION}/modules \
+    -DOPENCV_ENABLE_NONFREE=ON \
     .. && \
     make && \
     sudo make install
@@ -204,6 +207,7 @@ install_opencv_desktop_cpu() {
     -DINSTALL_C_EXAMPLES=OFF \
     -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
+    -DOPENCV_ENABLE_NONFREE=ON \
     .. && \
     make && \
     sudo make install
