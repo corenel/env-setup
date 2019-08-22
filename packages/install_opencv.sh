@@ -28,6 +28,7 @@ sudo apt-get install -yq \
   pkg-config
 sudo apt-get install -yq ffmpeg
 sudo apt-get install -yq libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-doc gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev libgstreamer-plugins-bad1.0-dev
+sudo apt-get install -yq libgoogle-glog-dev libgflags-dev
 sudo apt-get install -yq unzip
 sudo apt-get install -yq python-dev python-numpy python-py python-pytest
 sudo apt-get install -yq python3-dev python3-numpy python3-py python3-pytest
