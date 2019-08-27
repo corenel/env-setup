@@ -499,6 +499,7 @@ setup_conda() {
   alias cdi="conda install"
   alias cdup="conda update"
   alias cdug="conda upgrade"
+  alias cdupg="conda update -n base -c defaults conda"
   alias cdc="conda create"
 }
 alias scd=setup_conda
