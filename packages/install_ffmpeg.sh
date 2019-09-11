@@ -5,6 +5,9 @@ if [ -z $COMMON_SOURCED ]; then
 fi
 
 TMP_DIR=/tmp
+FFMPEG_VERSION=4.2.1
+
+prompt_default FFMPEG_VERSION "CMake Version [${FFMPEG_VERSION}]"
 
 # purge installed ffmpeg
 if confirmation "Purge installed ffmpeg"; then
@@ -18,10 +21,16 @@ sudo apt-get install yasm libx264-dev libx264-dev \
 
 # get latest ffmpeg source
 pushd ${TMP_DIR}
+
 # git clone https://git.ffmpeg.org/ffmpeg.git
-wget -O ffmpeg-snapshot.tar.bz2 \
-  https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && \
-  tar xjvf ffmpeg-snapshot.tar.bz2
+
+# wget -O ffmpeg-snapshot.tar.bz2 \
+#   https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && \
+#   tar xjvf ffmpeg-snapshot.tar.bz2
+
+wget -O ffmpeg-${FFMPEG_VERSION}.tar.bz2 \
+  https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.bz2 && \
+  tar xjvf ffmpeg-${FFMPEG_VERSION}.tar.bz2
 
 # build ffmpeg
 cd ffmpeg
