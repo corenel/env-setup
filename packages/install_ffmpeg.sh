@@ -13,7 +13,8 @@ fi
 
 # install dependencies
 sudo apt-get install yasm libx264-dev libx264-dev \
-  libvpx-dev libfdk-aac-dev libmp3lame-dev libopus-dev
+  libvpx-dev libfdk-aac-dev libmp3lame-dev libopus-dev \
+  libass-dev libvorbis-dev
 
 # get latest ffmpeg source
 pushd ${TMP_DIR}
@@ -31,7 +32,6 @@ if [ -x "$(command -v nvcc)" ]; then
     cd ..
   ./configure \
     --enable-gpl \
-    --enable-libaom \
     --enable-libass \
     --enable-libfdk-aac \
     --enable-libfreetype \
@@ -54,7 +54,6 @@ if [ -x "$(command -v nvcc)" ]; then
 else
   ./configure \
     --enable-gpl \
-    --enable-libaom \
     --enable-libass \
     --enable-libfdk-aac \
     --enable-libfreetype \
