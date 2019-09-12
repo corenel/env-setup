@@ -7,7 +7,7 @@ fi
 TMP_DIR=/tmp
 FFMPEG_VERSION=4.2.1
 
-prompt_default FFMPEG_VERSION "CMake Version [${FFMPEG_VERSION}]"
+prompt_default FFMPEG_VERSION "FFmpeg Version [${FFMPEG_VERSION}]"
 
 # purge installed ffmpeg
 if confirmation "Purge installed ffmpeg"; then
@@ -15,7 +15,7 @@ if confirmation "Purge installed ffmpeg"; then
 fi
 
 # install dependencies
-sudo apt-get install yasm libx264-dev libx264-dev \
+sudo apt-get install yasm libx264-dev libx265-dev \
   libvpx-dev libfdk-aac-dev libmp3lame-dev libopus-dev \
   libass-dev libvorbis-dev
 
