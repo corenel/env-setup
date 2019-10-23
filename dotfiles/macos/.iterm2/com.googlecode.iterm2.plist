@@ -1561,11 +1561,11 @@
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>1079 966 400 129 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>970 768 620 392 0 0 2560 1417 </string>
+	<string>1066 -548 620 392 536 -945 1680 922 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>1360 460 796 486 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1646 0 914 1417 0 0 2560 1417 </string>
+	<string>1830 0 730 1417 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -3124,23 +3124,25 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
+		<string>3.3.2</string>
 		<string>3.2.9</string>
-		<string>3.3.0</string>
 		<string>3.3.1</string>
+		<string>3.3.0</string>
+		<string>3.3.3</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{0, 0}, {1080, 1920}}</string>
+		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{59, 1411}</string>
+		<string>{1168, 792}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>304C47C6-02BE-4A56-A7A9-DB1F1D73C64B</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>7</integer>
+	<integer>19</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -3581,6 +3583,14 @@
 				<key>isTerminal</key>
 				<true/>
 				<key>name</key>
+				<string>number</string>
+				<key>nonterminalContext</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>isTerminal</key>
+				<true/>
+				<key>name</key>
 				<string>currentTab.currentSession.hostname</string>
 				<key>nonterminalContext</key>
 				<integer>0</integer>
@@ -3909,11 +3919,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-08-19T15:44:16Z</date>
+	<date>2019-09-15T14:31:41Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
-	<true/>
+	<false/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
@@ -3939,7 +3949,7 @@
 	<key>UseLionStyleFullscreen</key>
 	<false/>
 	<key>UseMetal</key>
-	<false/>
+	<true/>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>Window Arrangements</key>
@@ -8269,7 +8279,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.1</string>
+	<string>3.3.3</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
