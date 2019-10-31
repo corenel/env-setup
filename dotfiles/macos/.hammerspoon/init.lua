@@ -49,13 +49,13 @@ end
 -- Then we create/register all kinds of modal keybindings environments.
 ----------------------------------------------------------------------------------------------------
 -- Register windowHints (Register a keybinding which is NOT modal environment with modal supervisor)
-hswhints_keys = hswhints_keys or {"alt", "tab"}
-if string.len(hswhints_keys[2]) > 0 then
-    spoon.ModalMgr.supervisor:bind(hswhints_keys[1], hswhints_keys[2], 'Show Window Hints', function()
-        spoon.ModalMgr:deactivateAll()
-        hs.hints.windowHints()
-    end)
-end
+-- hswhints_keys = hswhints_keys or {"alt", "tab"}
+-- if string.len(hswhints_keys[2]) > 0 then
+--     spoon.ModalMgr.supervisor:bind(hswhints_keys[1], hswhints_keys[2], 'Show Window Hints', function()
+--         spoon.ModalMgr:deactivateAll()
+--         hs.hints.windowHints()
+--     end)
+-- end
 
 ----------------------------------------------------------------------------------------------------
 -- appM modal environment
