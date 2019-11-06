@@ -79,11 +79,11 @@ install_homebrew() {
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
   # use mirror repo for HomeBrew
-  cd "$(brew --repo)" || return
-  git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
-  cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-  git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
-  echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bash_profile
+  git -C "$(brew --repo)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+  git -C "$(brew --repo homebrew/core)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+  git -C "$(brew --repo homebrew/cask)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git
+  brew update
+  echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles' >> ~/.bash_profile
   source ~/.bash_profile
 
   brew update
