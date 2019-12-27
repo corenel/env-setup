@@ -9,3 +9,4 @@
 .postinstall/macos/.hammerspoon
 .aria2/*.session
 .idea
+.tags
