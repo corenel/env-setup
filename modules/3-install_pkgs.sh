@@ -44,6 +44,13 @@ install_oh_my_zsh() {
   fi
 }
 
+install_tpm() {
+  if [ ! -d $HOME/.tmux/plugins/tpm ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  fi
+  tmux source $HOME/.tmux.conf
+}
+
 install_homebrew_pkgs() {
   # pkgs
   brew install zsh autojump tmux tmate \
@@ -63,7 +70,7 @@ install_homebrew_pkgs() {
 }
 
 install_homebrew_casks() {
-  brew tap caskroom/cask
+  brew tap homebrew/cask
 
   brew cask install \
     sublime-text calibre docker hammerspoon iina karabiner-elements skim \
@@ -74,7 +81,7 @@ install_homebrew_casks() {
 }
 
 install_homebrew_fonts() {
-  brew tap caskroom/fonts
+  brew tap homebrew/cask-fonts
   brew cask install \
     font-source-code-pro \
     font-sourcecodepro-nerd-font font-sourcecodepro-nerd-font-mono \
@@ -90,6 +97,7 @@ Linux*)
   confirm install_libs "Install necessary libraries"
   confirm install_python_pkgs "Install Python packages"
   confirm install_oh_my_zsh "Install Oh-My-Zsh"
+  confirm install_tpm "Install Tmux Plugin Manager"
   ;;
 Darwin*)
   confirm install_homebrew_pkgs "Install packages from HomeBrew"
@@ -97,6 +105,7 @@ Darwin*)
   confirm install_homebrew_fonts "Install fonts from HomeBrew"
   confirm install_python_pkgs "Install Python packages"
   confirm install_oh_my_zsh "Install Oh-My-Zsh"
+  confirm install_tpm "Install Tmux Plugin Manager"
   ;;
 *)
   error "OS $OS_TYPE is not supported"
