@@ -71,13 +71,17 @@ install_homebrew_pkgs() {
 
 install_homebrew_casks() {
   brew tap homebrew/cask
-
   brew cask install \
-    sublime-text calibre docker hammerspoon iina karabiner-elements skim \
-    vnc-viewer xld intel-power-gadget android-file-transfer \
-    xquartz mactex mounty sourcetree \
-    google-chrome google-backup-and-sync \
-    android-file-transfer typora aria2gui iterm2 maciasl mounty
+    sublime-text clion pycharm typora skim mactex \
+    xquartz docker fork iterm2 vnc-viewer \
+    calibre knotes imazing qbserve \
+    iina xld spotify \
+    intel-power-gadget mounty alfred istat-menus \
+    hammerspoon karabiner-elements \
+    aria2gui transmission \
+    setapp \
+    surge \
+    google-chrome google-backup-and-sync
 }
 
 install_homebrew_fonts() {
