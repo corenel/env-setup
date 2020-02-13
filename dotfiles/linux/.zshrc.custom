@@ -32,7 +32,7 @@ alias aupd='sudo $apt_pref update'
 alias aupg='sudo $apt_pref upgrade'
 alias di='sudo dpkg -i'
 
-# shadowsocks
+# proxy
 alias ss='$HOME/proxyservice on'
 alias ssk='$HOME/proxyservice off'
 

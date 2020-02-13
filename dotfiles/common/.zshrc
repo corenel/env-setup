@@ -387,7 +387,7 @@ proxy () {
   export no_proxy=$NO_PROXY
   _log_status "Proxy on"
 }
-noproxy () {
+unproxy () {
   unset http_proxy
   unset HTTPS_PROXY
   unset HTTP_PROXY
@@ -396,6 +396,7 @@ noproxy () {
   unset ftp_proxy
   _log_status "Proxy off"
 }
+alias pc4=proxychains4
 
 # journal
 JOURNAL_ROOT=$HOME/Workspace/journal
