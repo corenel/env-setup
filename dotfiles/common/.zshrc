@@ -373,6 +373,16 @@ rfrom () {
   fi
 }
 
+rcp() {
+  if [ -e "$(pwd)/exclude.txt" ] ; then
+    rsync -avzP --exclude-from="$(pwd)/exclude.txt" $@
+  elif [ -e "$(pwd)/.gitignore" ] ; then
+    rsync -avzP --filter=":- $(pwd)/.gitignore" $@
+  else
+    rsync -avzP $@
+  fi
+}
+
 # proxy
 export CUSTOM_HTTP_PROXY='http://localhost:6152'
 export CUSTOM_SOCKS5_PROXY='socks5://localhost:6153'
