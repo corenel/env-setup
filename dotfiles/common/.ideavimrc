@@ -29,6 +29,22 @@ nmap \o :set paste!<CR>:set paste?<CR>
 " nmap \t :tabnew<CR>
 nmap \z :w<CR>:!open %<CR><CR>
 
+" Map BS to \ for HHKB layout
+" nnoremap <BS> \
+" nmap <BS>c \c
+nmap <BS>e \e
+nmap <BS>f \f
+nmap <BS>r \r
+" nmap <BS>g \g
+nmap <BS>h \h
+nmap <BS>i \i
+nmap <BS>l \l
+nmap <BS>o \o
+" nmap <BS>t \t
+" nmap <BS>v \v
+" nmap <BS>x \x
+nmap <BS>z \z
+
 " Turn off linewise keys. Normally, the `j' and `k' keys move the cursor down one entire line. with
 " line wrapping on, this can cause the cursor to actually skip a few lines on the screen because
 " it's moving from line N to line N+1 in the file. I want this to act more visually -- I want `down'
