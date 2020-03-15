@@ -423,6 +423,7 @@ journal_create() {
 alias jj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT"
 alias vj=journal_create
 alias sj="[ -d $JOURNAL_ROOT ] && journal_grep"
+alias dpj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT && ./deploy.sh && cd -"
 
 # search occurance of code and open with editor
 vack() {
