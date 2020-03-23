@@ -418,10 +418,19 @@ journal_grep() {
   fi
 }
 journal_create() {
-  [ -d $JOURNAL_ROOT ] && mkdir -p $JOURNAL_ROOT/$(date +%Y)/; v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+  [ -d $JOURNAL_ROOT ] && mkdir -p $JOURNAL_ROOT/$(date +%Y)/; touch $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+}
+journal_open_vim() {
+  journal_create
+  v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+}
+journal_open_typora() {
+  journal_create
+  typora $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
 }
 alias jj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT"
-alias vj=journal_create
+alias vj=journal_open_vim
+alias tpj=journal_open_typora
 alias sj="[ -d $JOURNAL_ROOT ] && journal_grep"
 alias dpj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT && ./deploy.sh && cd -"
 
