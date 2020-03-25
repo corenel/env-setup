@@ -75,7 +75,7 @@ install_homebrew_casks() {
     sublime-text clion pycharm typora skim mactex \
     xquartz docker fork iterm2 vnc-viewer \
     calibre knotes imazing qbserve \
-    iina xld spotify \
+    iina xld spotify lyricsx \
     intel-power-gadget mounty alfred istat-menus \
     hammerspoon karabiner-elements \
     aria2gui transmission \
