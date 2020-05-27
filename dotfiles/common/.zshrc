@@ -3,15 +3,15 @@ export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="ys"
 
 plugins=(
-  git
-  sudo
-  docker
-  autojump
+  # git
+  # sudo
+  # docker
+  # autojump
   # extract
   # copydir copybuffer copyfile cp
   zsh-autosuggestions
   zsh-syntax-highlighting
-  # zsh-completions
+  zsh-completions
   # colored-man-pages colorize
 )
 
