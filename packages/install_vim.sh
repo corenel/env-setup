@@ -3,9 +3,9 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
-
-VIM_VERSION="v8.0.1241"
-TMP_DIR=/tmp
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
 prompt_default VIM_VERSION "Vim Version [${VIM_VERSION}]"
 

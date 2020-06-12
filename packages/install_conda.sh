@@ -8,7 +8,6 @@ if [ -z $SYSTEM_VARIABLES_SOURCED ]; then
   source include/system_variables.sh
 fi
 
-TMP_DIR=/tmp
 MINICONDA_INSTALL_DIR=$HOME/miniconda3
 
 case $OS_TYPE in

@@ -3,9 +3,9 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
-
-TMP_DIR=/tmp
-FFMPEG_VERSION=4.2.1
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
 prompt_default FFMPEG_VERSION "FFmpeg Version [${FFMPEG_VERSION}]"
 

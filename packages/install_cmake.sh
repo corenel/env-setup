@@ -3,10 +3,9 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
-
-CMAKE_VERSION=3.14
-CMAKE_BUILD=1
-TMP_DIR=/tmp
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
 prompt_default CMAKE_VERSION "CMake Major Version [${CMAKE_VERSION}]"
 prompt_default CMAKE_BUILD "CMake Build [${CMAKE_BUILD}]"

@@ -3,10 +3,11 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
-REALVNC_VERSION=6.4.1
 REALVNC_LICENSE=X4FS7-483JZ-C8HVQ-DJE9J-HG4DA
-TMP_DIR=/tmp
 
 prompt_default REALVNC_VERSION "RealVNC Server Version [${REALVNC_VERSION}]"
 

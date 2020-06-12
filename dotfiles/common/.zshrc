@@ -170,6 +170,7 @@ alias udp="cd $HOME/.dotfiles-personal/ && git pull && cd -"
 alias uy="cd $HOME/.ysvim/ && git pull && cd -"
 
 # quick jump
+alias j="autojump"
 alias jd="[ -d $HOME/.dotfiles ] && cd $HOME/.dotfiles"
 alias jdp="[ -d $HOME/.dotfiles-personal ] && cd $HOME/.dotfiles-personal"
 alias jv="[ -d $HOME/.ysvim ] && cd $HOME/.ysvim"

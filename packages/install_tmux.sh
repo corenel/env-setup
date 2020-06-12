@@ -3,10 +3,9 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
-
-TMUX_VERSION=2.8
-LIBEVENT_VERSION=2.1.8
-TMP_DIR=/tmp
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
 prompt_default TMUX_VERSION "Tmux Version [${TMUX_VERSION}]"
 prompt_default LIBEVENT_VERSION "Libevent Build [${LIBEVENT_VERSION}]"

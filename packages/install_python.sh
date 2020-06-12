@@ -3,9 +3,9 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
-
-PYTHON_VERSION=3.7.3
-TMP_DIR=/tmp
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
 prompt_default PYTHON_VERSION "Python Version [${PYTHON_VERSION}]"
 

@@ -3,9 +3,9 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
-
-BOOST_VERSION=1.70.0
-TMP_DIR=/tmp
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
 prompt_default EIGEN_VERSION "Boost Version [${BOOST_VERSION}]"
 BOOST_VERSION=${BOOST_VERSION//./_}

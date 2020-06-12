@@ -3,9 +3,9 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
-
-EIGEN_VERSION=3.3.7
-TMP_DIR=/tmp
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
 prompt_default EIGEN_VERSION "Eigen Version [${EIGEN_VERSION}]"
 

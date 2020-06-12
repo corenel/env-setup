@@ -4,8 +4,6 @@ if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
 
-TMP_DIR=/tmp
-
 # install dependencies
 # sudo apt install -y cmake libncurses5-dev libncursesw5-dev git
 sudo apt install -y libncurses5-dev libncursesw5-dev git

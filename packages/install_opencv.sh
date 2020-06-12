@@ -3,9 +3,9 @@
 if [ -z $COMMON_SOURCED ]; then
   source include/common.sh
 fi
-
-OPENCV_VERSION=3.4.6
-TMP_DIR=/tmp
+if [ -z $VERSION_SOURCED ]; then
+  source include/version.sh
+fi
 
 prompt_default OPENCV_VERSION "OpenCV Version [${OPENCV_VERSION}]"
 
