@@ -334,43 +334,62 @@ replace_encoding () {
 
 # rsync to distination host
 rto () {
-  for inputpath in "${@}"
-  do
-    relpath=$(pwd | sed "s#$HOME#\$HOME#g")
-    if [[ $inputpath == *":"* ]] ; then
-      dstpath=${inputpath#*:}
-      dsthost=${inputpath%:*}
-      _log_status "rsync $relpath to $dsthost:$dstpath ..."
-    else
-      dstpath=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
-      dsthost=${inputpath}
-      _log_status "rsync $relpath to $dsthost:$relpath ..."
-    fi
+  rflags=${@:1:-1}
+  inputpath=${@: -1}
+  relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+  if [[ $inputpath == *":"* ]] ; then
+    dstpath=${inputpath#*:}
+    dsthost=${inputpath%:*}
+    [[ ! " ${rflags[@]} " =~ " -q " ]] && _log_status "Rsync $relpath to $dsthost:$dstpath ..."
+  else
+    dstpath=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
+    dsthost=${inputpath}
+    [[ ! " ${rflags[@]} " =~ " -q " ]] && _log_status "Rsync $relpath to $dsthost:$relpath ..."
+  fi
 
-    if [ -e "$(pwd)/exclude.txt" ] ; then
-      rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$dstpath
-    elif [ -e "$(pwd)/.gitignore" ] ; then
-      rsync -avzP --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$dstpath
-    else
-      rsync -avzP $(pwd) $dsthost:$dstpath
-    fi
-    echo
-  done
+  if [[ ! " ${rflags[@]} " =~ " -q " ]]; then
+    [ ! -z ${rflags} ] && _log_status "Additional flags: ${rflags}"
+    echo "Press any key to continue (or abort with Ctrl-C) ... "
+    read -n 1 key
+  fi
+
+  if [ -e "$(pwd)/exclude.txt" ] ; then
+    rsync -avzP ${rflags} --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$dstpath
+  elif [ -e "$(pwd)/.gitignore" ] ; then
+    rsync -avzP ${rflags} --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$dstpath
+  else
+    rsync -avzP ${rflags} $(pwd) $dsthost:$dstpath
+  fi
+  echo
 }
 
 # rsync from source host
 rfrom () {
-  dsthost=$1
+  rflags=${@:1:-1}
+  inputpath=${@: -1}
   relpath=$(pwd | sed "s#$HOME#\$HOME#g")
   parentdir=$(dirname $(pwd))
-
-  _log_status "rsync $relpath from $dsthost:$relpath ..."
-  if [ -e "$(pwd)/exclude.txt" ] ; then
-    rsync -avzP --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${relpath} ${parentdir}
-  elif [ -e "$(pwd)/.gitignore" ] ; then
-    rsync -avzP --filter=":- $(pwd)/.gitignore" ${dsthost}:${relpath} ${parentdir}
+  if [[ $inputpath == *":"* ]] ; then
+    dstpath=${inputpath#*:}
+    dsthost=${inputpath%:*}
   else
-    rsync -avzP ${dsthost}:${relpath} ${parentdir}
+    dstpath=${relpath}
+    dsthost=${inputpath}
+  fi
+
+  if [[ ! " ${rflags[@]} " =~ " -q " ]]; then
+    _log_status "Rsync $relpath from $dsthost:$dstpath ..."
+    [ ! -z ${rflags} ] && _log_status "Additional flags: ${rflags}"
+    echo "Press any key to continue (or abort with Ctrl-C) ... "
+    read -n 1 key
+  fi
+
+  if [ -e "$(pwd)/exclude.txt" ] ; then
+    rsync -avzP ${rflags} --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${dstpath} ${parentdir}
+  elif [ -e "$(pwd)/.gitignore" ] ; then
+    rsync -avzP ${rflags} --filter=":- $(pwd)/.gitignore" ${dsthost}:${dstpath} ${parentdir}
+  else
+    rsync -avzP ${rflags} ${dsthost}:${relpath} ${parentdir}
   fi
 }
 
@@ -381,6 +400,18 @@ rcp() {
     rsync -avzP --filter=":- $(pwd)/.gitignore" $@
   else
     rsync -avzP $@
+  fi
+}
+
+wrto () {
+  _log_status "Synchronizing..."
+  rto $@
+
+  _log_status "Watching for changes. Quit anytime with Ctrl-C."
+  if [ -e "$(pwd)/.gitignore" ] ; then
+    fswatch . | while read file; do git check-ignore -q $file || echo $file && rto $@; done
+  else
+    fswatch . | while read file; do echo $file && rto $@; done
   fi
 }
 

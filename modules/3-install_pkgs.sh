@@ -35,7 +35,7 @@ install_python_pkgs() {
 
 install_oh_my_zsh() {
   if [ ! -d $HOME/.oh-my-zsh ]; then
-    sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O - --no-check-certificate)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
   fi
   if [ -d $HOME/.oh-my-zsh/custom ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
