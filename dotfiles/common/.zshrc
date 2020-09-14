@@ -15,7 +15,9 @@ plugins=(
   # colored-man-pages colorize
 )
 
+ZSH_DISABLE_COMPFIX=true
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
+ZSH_DISABLE_COMPFIX=false
 
 # }}} Oh-My-ZSH
 
@@ -444,7 +446,7 @@ alias pc4=proxychains4
 JOURNAL_ROOT=$HOME/Workspace/journal
 journal_grep() {
   if _has rg; then
-    rg -t md -e $@ $JOURNAL_ROOT
+    rg -t md --sort-files -e $@ $JOURNAL_ROOT
   else
     grep --include=\*.md -irnw $JOURNAL_ROOT -e $@
   fi
@@ -453,12 +455,18 @@ journal_create() {
   [ -d $JOURNAL_ROOT ] && mkdir -p $JOURNAL_ROOT/$(date +%Y)/; touch $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
 }
 journal_open_vim() {
-  journal_create
-  v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+  if [ "$#" -ne 1 ]; then
+    journal_create
+    v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+  fi
+  v $JOURNAL_ROOT/snippets/${1}.md
 }
 journal_open_typora() {
-  journal_create
-  typora $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+  if [ "$#" -ne 1 ]; then
+    journal_create
+    typora $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+  fi
+  v $JOURNAL_ROOT/snippets/${1}.md
 }
 alias jj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT"
 alias vj=journal_open_vim
