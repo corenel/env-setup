@@ -15,9 +15,7 @@ plugins=(
   # colored-man-pages colorize
 )
 
-ZSH_DISABLE_COMPFIX=true
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
-ZSH_DISABLE_COMPFIX=false
 
 # }}} Oh-My-ZSH
 
@@ -458,15 +456,17 @@ journal_open_vim() {
   if [ "$#" -ne 1 ]; then
     journal_create
     v $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+  else
+    v $JOURNAL_ROOT/snippets/${1}.md
   fi
-  v $JOURNAL_ROOT/snippets/${1}.md
 }
 journal_open_typora() {
   if [ "$#" -ne 1 ]; then
     journal_create
     typora $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
+  else
+    v $JOURNAL_ROOT/snippets/${1}.md
   fi
-  v $JOURNAL_ROOT/snippets/${1}.md
 }
 alias jj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT"
 alias vj=journal_open_vim
