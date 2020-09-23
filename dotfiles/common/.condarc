@@ -1,14 +1,8 @@
 channels:
   - defaults
-show_channel_urls: true
 default_channels:
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+  - https://anaconda.mirrors.sjtug.sjtu.edu.cn/pkgs/r
+  - https://anaconda.mirrors.sjtug.sjtu.edu.cn/pkgs/main
 custom_channels:
-  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
-  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+  conda-forge: https://anaconda.mirrors.sjtug.sjtu.edu.cn/cloud/
+  pytorch: https://anaconda.mirrors.sjtug.sjtu.edu.cn/cloud/
