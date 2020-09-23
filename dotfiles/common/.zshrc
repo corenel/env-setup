@@ -465,7 +465,7 @@ journal_open_typora() {
     journal_create
     typora $JOURNAL_ROOT/$(date +%Y)/$(date +%Y-%m-%d).md
   else
-    v $JOURNAL_ROOT/snippets/${1}.md
+    typora $JOURNAL_ROOT/snippets/${1}.md
   fi
 }
 alias jj="[ -d $JOURNAL_ROOT ] && cd $JOURNAL_ROOT"
