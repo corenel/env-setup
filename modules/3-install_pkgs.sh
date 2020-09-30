@@ -16,9 +16,11 @@ add_ppa_repo() {
 
 install_utils() {
   sudo apt-get install -yq --allow-unauthenticated \
-    build-essential openssh-server wireless-tools git \
-    wget zsh htop vim curl cmake ccache clang autojump \
-    xclip xsel neovim supervisor
+    openssh-server wireless-tools git wget curl rsync \
+    build-essential cmake ccache clang gdb \
+    htop iotop iftop net-tools \
+    xclip xsel autojump gawk \
+    zsh tmux vim neovim supervisor
 }
 
 install_libs() {
@@ -35,7 +37,7 @@ install_python_pkgs() {
 
 install_oh_my_zsh() {
   if [ ! -d $HOME/.oh-my-zsh ]; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
   if [ -d $HOME/.oh-my-zsh/custom ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions

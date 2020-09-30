@@ -17,6 +17,7 @@ sudo apt-get update
 sudo apt-get install -y \
   ros-${ROS_CUSTOM_DISTRO}-ros-base \
   python-rosinstall python-rosinstall-generator python-wstool \
+  python-rosdep \
   ros-${ROS_CUSTOM_DISTRO}-image-transport \
   ros-${ROS_CUSTOM_DISTRO}-tf2 \
   ros-${ROS_CUSTOM_DISTRO}-tf2-geometry-msgs
