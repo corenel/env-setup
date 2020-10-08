@@ -16,7 +16,7 @@ if confirmation "Purge installed cmake"; then
 fi
 
 # install dependencies for SSL support
-sudo apt-get install libcurl4-gnutls-dev zlib1g-dev
+sudo apt-get install zlib1g-dev # libcurl4-gnutls-dev
 
 # get latest cmake source
 pushd ${TMP_DIR}
