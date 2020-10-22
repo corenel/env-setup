@@ -54,7 +54,7 @@ install_opencv_embedded_gpu() {
   prompt_default CUDA_ARCH "CUDA Arch [${CUDA_ARCH}]"
   cmake \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_PREFIX="/usr/local" \
     -DBUILD_PNG=OFF \
     -DBUILD_TIFF=OFF \
     -DBUILD_TBB=OFF \
@@ -89,6 +89,7 @@ install_opencv_embedded_gpu() {
     -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
     -DOPENCV_ENABLE_NONFREE=ON \
+    -DOPENCV_GENERATE_PKGCONFIG=YES \
     .. && \
     make && \
     sudo make install
@@ -98,7 +99,7 @@ install_opencv_embedded_cpu() {
   echo 'Build OpenCV on Embedded without CUDA'
   cmake \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_PREFIX="/usr/local" \
     -DBUILD_PNG=OFF \
     -DBUILD_TIFF=OFF \
     -DBUILD_TBB=OFF \
@@ -126,6 +127,7 @@ install_opencv_embedded_cpu() {
     -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
     -DOPENCV_ENABLE_NONFREE=ON \
+    -DOPENCV_GENERATE_PKGCONFIG=YES \
     .. && \
     make && \
     sudo make install
@@ -137,7 +139,7 @@ install_opencv_desktop_gpu() {
   prompt_default CUDA_ARCH "CUDA Arch [${CUDA_ARCH}]"
   cmake \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_PREFIX="/usr/local" \
     -DBUILD_PNG=OFF \
     -DBUILD_TIFF=OFF \
     -DBUILD_TBB=OFF \
@@ -172,6 +174,7 @@ install_opencv_desktop_gpu() {
     -DINSTALL_TESTS=OFF \
     -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_VERSION}/modules \
     -DOPENCV_ENABLE_NONFREE=ON \
+    -DOPENCV_GENERATE_PKGCONFIG=YES \
     .. && \
     make && \
     sudo make install
@@ -181,7 +184,7 @@ install_opencv_desktop_cpu() {
   echo 'Build OpenCV on PC without CUDA'
   cmake \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_INSTALL_PREFIX="/usr/local" \
     -DBUILD_PNG=OFF \
     -DBUILD_TIFF=OFF \
     -DBUILD_TBB=OFF \
@@ -209,6 +212,7 @@ install_opencv_desktop_cpu() {
     -DINSTALL_PYTHON_EXAMPLES=OFF \
     -DINSTALL_TESTS=OFF \
     -DOPENCV_ENABLE_NONFREE=ON \
+    -DOPENCV_GENERATE_PKGCONFIG=YES \
     .. && \
     make && \
     sudo make install
