@@ -30,11 +30,12 @@ autoload -Uz _zinit
 
   # Completion {{{
 
+  # not compatible with the tab-completion of rosbash
   # 禁用旧补全系统
-  zstyle ':completion:*' use-compctl false
-  compctl() {
-      print -P "\n%F{red}Don't use compctl anymore%f"
-  }
+  # zstyle ':completion:*' use-compctl false
+  # compctl() {
+  #     print -P "\n%F{red}Don't use compctl anymore%f"
+  # }
 
   # 缓存补全结果
   zstyle ':completion:*:complete:*' use-cache 1
@@ -161,19 +162,19 @@ autoload -Uz _zinit
   forgit_diff=gdi
   forgit_log=glgi
 
-  local extract="
-  # trim input
-  local in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
-  # get ctxt for current completion
-  local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
-  # real path
-  local realpath=\${ctxt[IPREFIX]}\${ctxt[hpre]}\$in
-  realpath=\${(Qe)~realpath}
-  "
-  zstyle ':fzf-tab:*' single-group ''
-  zstyle ':fzf-tab:complete:_zlua:*' query-string input
-  zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
-  zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'exa -1 --color=always $realpath'
+  # local extract="
+  # # trim input
+  # local in=\${\${\"\$(<{f})\"%\$'\0'*}#*\$'\0'}
+  # # get ctxt for current completion
+  # local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
+  # # real path
+  # local realpath=\${ctxt[IPREFIX]}\${ctxt[hpre]}\$in
+  # realpath=\${(Qe)~realpath}
+  # "
+  # zstyle ':fzf-tab:*' single-group ''
+  # zstyle ':fzf-tab:complete:_zlua:*' query-string input
+  # zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
+  # zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'exa -1 --color=always $realpath'
 
   zstyle ":completion:*:git-checkout:*" sort false
   zstyle ':completion:*:descriptions' format '[%d]'
