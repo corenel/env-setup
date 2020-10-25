@@ -46,6 +46,10 @@ install_oh_my_zsh() {
   fi
 }
 
+install_zinit() {
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+}
+
 install_tpm() {
   if [ ! -d $HOME/.tmux/plugins/tpm ]; then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -101,19 +105,19 @@ Linux*)
   confirm add_ppa_repo "Add ppa repository"
   confirm install_utils "Install necessary utilities"
   confirm install_libs "Install necessary libraries"
-  confirm install_python_pkgs "Install Python packages"
-  confirm install_oh_my_zsh "Install Oh-My-Zsh"
-  confirm install_tpm "Install Tmux Plugin Manager"
   ;;
 Darwin*)
   confirm install_homebrew_pkgs "Install packages from HomeBrew"
   confirm install_homebrew_casks "Install softwares from HomeBrew Cask"
   confirm install_homebrew_fonts "Install fonts from HomeBrew"
-  confirm install_python_pkgs "Install Python packages"
-  confirm install_oh_my_zsh "Install Oh-My-Zsh"
-  confirm install_tpm "Install Tmux Plugin Manager"
   ;;
 *)
   error "OS $OS_TYPE is not supported"
+  exit 1
   ;;
 esac
+
+confirm install_python_pkgs "Install Python packages"
+confirm install_oh_my_zsh "Install Oh-My-Zsh"
+confirm install_zinit "Install Zinit"
+confirm install_tpm "Install Tmux Plugin Manager"

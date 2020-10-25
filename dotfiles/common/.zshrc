@@ -1,27 +1,20 @@
-# Oh-My-ZSH {{{
-export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="ys"
+# # Oh-My-ZSH {{{
 
-plugins=(
-  git
-  # sudo
-  # docker
-  # autojump
-  # extract
-  # copydir copybuffer copyfile cp
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-completions
-  # colored-man-pages colorize
-)
+# # load oh-my-zsh
+# [ -f $HOME/.zshrc.oh-my-zsh ] && source $HOME/.zshrc.oh-my-zsh
 
-[ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
+# # }}} Oh-My-ZSH
 
-# }}} Oh-My-ZSH
+# Zinit {{{
+
+# load zinit
+[ -f $HOME/.zshrc.zinit ] && source $HOME/.zshrc.zinit
+
+# }}} Zinit
 
 # GENERAL CONFIG {{{
 
-# load specific config
+# load general config
 [ -f $HOME/.zshrc.general ] && source $HOME/.zshrc.general
 
 # }}} GENERAL_CONFIG
