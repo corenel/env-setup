@@ -74,6 +74,11 @@ zinit light-mode for \
     wfxr/forgit
     # skywind3000/z.lua \
 
+# Binary release in archive, from GitHub-releases page.
+# After automatic unpacking it provides program "fzf".
+zinit ice from"gh-r" as"program"
+zinit load junegunn/fzf-bin
+
 # oh-my-zsh plugins
 zinit for \
     OMZ::lib/clipboard.zsh \
@@ -86,6 +91,7 @@ zinit for \
 
 # completeion and highlighting
 zpcompinit; zpcdreplay
+
 zinit light Aloxaf/fzf-tab
 zinit for \
     light-mode zsh-users/zsh-autosuggestions \
