@@ -30,7 +30,7 @@ ZSH_AUTOSUGGEST_USE_ASYNC=1
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 ZSH_AUTOSUGGEST_COMPLETION_IGNORE='( |man |pikaur -S )*'
 
-GENCOMP_DIR=$XDG_CONFIG_HOME/zsh/completions
+GENCOMP_DIR=$HOME/.zinit/completions
 
 forgit_add=gai
 forgit_diff=gdi
@@ -45,10 +45,10 @@ local -A ctxt=(\"\${(@ps:\2:)CTXT}\")
 local realpath=\${ctxt[IPREFIX]}\${ctxt[hpre]}\$in
 realpath=\${(Qe)~realpath}
 "
-# zstyle ':fzf-tab:*' single-group ''
-# zstyle ':fzf-tab:complete:_zlua:*' query-string input
-# zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
-# zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:*' single-group ''
+zstyle ':fzf-tab:complete:_zlua:*' query-string input
+zstyle ':fzf-tab:complete:kill:argument-rest' extra-opts --preview=$extract'ps --pid=$in[(w)1] -o cmd --no-headers -w -w' --preview-window=down:3:wrap
+zstyle ':fzf-tab:complete:cd:*' extra-opts --preview=$extract'exa -1 --color=always $realpath'
 
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
@@ -78,6 +78,14 @@ zinit light-mode for \
 # After automatic unpacking it provides program "fzf".
 zinit ice from"gh-r" as"program"
 zinit load junegunn/fzf-bin
+
+zinit light-mode for \
+    blockf \
+        zsh-users/zsh-completions \
+    as="program" atclone="rm -f ^(rgg|agv)" \
+        lilydjwg/search-and-view \
+    atclone="dircolors -b LS_COLORS > c.zsh" atpull='%atclone' pick='c.zsh' \
+        trapd00r/LS_COLORS
 
 # oh-my-zsh plugins
 zinit for \
