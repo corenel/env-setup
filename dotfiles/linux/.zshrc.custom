@@ -1,11 +1,3 @@
-# LinuxBrew {{{
-
-[ -d "/home/linuxbrew/.linuxbrew/" ] && export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
-[ -d "/home/linuxbrew/.linuxbrew/" ] && export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
-[ -d "/home/linuxbrew/.linuxbrew/" ] && export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
-
-# }}} LinuxBrew
-
 # CUDA {{{
 
 export CUDA_HOME="/usr/local/cuda"
@@ -32,26 +24,15 @@ alias aupd='sudo $apt_pref update'
 alias aupg='sudo $apt_pref upgrade'
 alias di='sudo dpkg -i'
 
-# proxy
-alias ss='$HOME/proxyservice on'
-alias ssk='$HOME/proxyservice off'
-
 # }}} LINUX ALIASES
 
 # ROS {{{
 setup_ros()
 {
-  # ZJUDancer humanoid project
-  export ZJUDANCER_ROBOTID=5
-  export ZJUDANCER_GUI=1
-  export ZJUDANCER_GPU=0
-  export ZJUDANCER_TX2=0
-  export ZJUDANCER_ROS_DISTRO=noetic
+  export DEFAULT_ROS_DISTRO=melodic
 
-  [ -z $ROS_DISTRO ] && [ -f /opt/ros/${ZJUDANCER_ROS_DISTRO}/setup.zsh ] && source /opt/ros/${ZJUDANCER_ROS_DISTRO}/setup.zsh
+  [ -z $ROS_DISTRO ] && [ -f /opt/ros/${DEFAULT_ROS_DISTRO}/setup.zsh ] && source /opt/ros/${DEFAULT_ROS_DISTRO}/setup.zsh
   [ -f $HOME/dancer-workspace/.zshrc.dancer ] && source $HOME/dancer-workspace/.zshrc.dancer
-  # [ -f $HOME/humanoid-lib/devel/setup.zsh ] && source $HOME/humanoid-lib/devel/setup.zsh
-  # [ -f $HOME/humanoid/devel/setup.zsh ] && source $HOME/humanoid/devel/setup.zsh
   export ROSCONSOLE_FORMAT='[${severity}][${time}][${node}:${logger}]: ${message}'
 
   alias rcd='roscd'
@@ -64,15 +45,6 @@ setup_ros()
   alias rl='roslaunch'
   alias rr='rosrun'
   alias rlog="sudo vim ${ROS_ROOT}/config/rosconsole.config"
-
-  # alias sim='roslaunch dlaunch sim.launch'
-  # alias config='rl dconfig dconfig.launch'
-  # alias monitor='QT_DEVICE_PIXEL_RATIO=auto rr dmonitor dmonitor'
-  # alias dviz="rr dviz dviz"
-  # alias v="rl dvision default.launch"
-  # alias m="rl dmotion default.launch"
-  # alias rmv="rl dlaunch mv.launch"
-  # alias loglevel="sudo vim $ROS_ROOT/config/rosconsole.config"
 }
 alias sr=setup_ros
 
