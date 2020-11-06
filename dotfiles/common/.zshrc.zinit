@@ -114,6 +114,8 @@ autoload -Uz _zinit
   setopt multios
   setopt listpacked
   setopt interactive_comments
+  setopt auto_cd
+  setopt prompt_subst
 
   # }}} Misc
 
