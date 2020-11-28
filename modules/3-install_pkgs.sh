@@ -80,23 +80,26 @@ install_homebrew_casks() {
   brew cask install \
     sublime-text clion pycharm typora skim mactex \
     xquartz docker fork iterm2 vnc-viewer \
-    calibre knotes imazing qbserve \
-    iina xld spotify lyricsx \
-    intel-power-gadget mounty alfred istat-menus \
-    hammerspoon karabiner-elements \
-    aria2gui transmission \
+    imazing iina xld spotify lyricsx \
+    mounty alfred \
+    karabiner-elements \
     setapp \
     surge \
     google-chrome google-backup-and-sync
+    # calibre knotes imazing qbserve \
+    # intel-power-gadget
+    # hammerspoon
+    # istat-menus
+    # aria2gui transmission \
 }
 
 install_homebrew_fonts() {
   brew tap homebrew/cask-fonts
   brew cask install \
     font-source-code-pro \
-    font-sourcecodepro-nerd-font font-sourcecodepro-nerd-font-mono \
-    font-fira-code font-firacode-nerd-font font-firamono-nerd-font \
-    font-meslo-for-powerline font-meslo-nerd-font font-meslo-nerd-font-mono \
+    font-sauce-code-pro-nerd-font \
+    font-fira-code font-fira-code-nerd-font font-fira-mono-nerd-font \
+    font-meslo-for-powerline font-meslo-lg-nerd-font \
     font-hack-nerd-font
 }
 
