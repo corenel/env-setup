@@ -336,11 +336,11 @@ rto () {
   fi
 
   if [ -e "$(pwd)/exclude.txt" ] ; then
-    rsync -avzP ${rflags} --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$dstpath
+    rsync -avP ${rflags} --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$dstpath
   elif [ -e "$(pwd)/.gitignore" ] ; then
-    rsync -avzP ${rflags} --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$dstpath
+    rsync -avP ${rflags} --filter=":- $(pwd)/.gitignore" $(pwd) $dsthost:$dstpath
   else
-    rsync -avzP ${rflags} $(pwd) $dsthost:$dstpath
+    rsync -avP ${rflags} $(pwd) $dsthost:$dstpath
   fi
   echo
 }
@@ -367,21 +367,21 @@ rfrom () {
   fi
 
   if [ -e "$(pwd)/exclude.txt" ] ; then
-    rsync -avzP ${rflags} --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${dstpath} ${parentdir}
+    rsync -avP ${rflags} --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${dstpath} ${parentdir}
   elif [ -e "$(pwd)/.gitignore" ] ; then
-    rsync -avzP ${rflags} --filter=":- $(pwd)/.gitignore" ${dsthost}:${dstpath} ${parentdir}
+    rsync -avP ${rflags} --filter=":- $(pwd)/.gitignore" ${dsthost}:${dstpath} ${parentdir}
   else
-    rsync -avzP ${rflags} ${dsthost}:${relpath} ${parentdir}
+    rsync -avP ${rflags} ${dsthost}:${relpath} ${parentdir}
   fi
 }
 
 rcp() {
   if [ -e "$(pwd)/exclude.txt" ] ; then
-    rsync -avzP --exclude-from="$(pwd)/exclude.txt" $@
+    rsync -avP --exclude-from="$(pwd)/exclude.txt" $@
   elif [ -e "$(pwd)/.gitignore" ] ; then
-    rsync -avzP --filter=":- $(pwd)/.gitignore" $@
+    rsync -avP --filter=":- $(pwd)/.gitignore" $@
   else
-    rsync -avzP $@
+    rsync -avP $@
   fi
 }
 
