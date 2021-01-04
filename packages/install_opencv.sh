@@ -36,7 +36,7 @@ sudo apt-get install -yq \
   libgoogle-glog-dev \
   libgflags-dev
 sudo apt-get install -yq \
-  ffmpeg
+  ffmpeg \
   libavcodec-dev \
   libavformat-dev \
   libavutil-dev \
