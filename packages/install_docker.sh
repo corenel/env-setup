@@ -5,31 +5,10 @@ if [ -z $COMMON_SOURCED ]; then
 fi
 
 install_docker() {
-  # remove old version
-  sudo apt-get remove docker docker-engine docker.io containerd runc
-
-  # add repository
-  sudo apt-get update
-  sudo apt-get install \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      gnupg-agent \
-      software-properties-common
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  sudo apt-key fingerprint 0EBFCD88
-  sudo add-apt-repository \
-    "deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu/ \
-    $(lsb_release -cs) \
-    stable"
-  sudo apt-get update
-  sudo apt-get install docker-ce docker-ce-cli containerd.io
-
-  # test hello-world
-  # sudo docker run hello-world
-
-  sudo systemctl start docker
-  sudo systemctl enable docker
+  # install docker
+  curl https://get.docker.com | sh \
+    && sudo systemctl start docker \
+    && sudo systemctl enable docker
 
   # non-root user
   sudo groupadd docker
