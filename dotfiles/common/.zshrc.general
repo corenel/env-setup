@@ -540,4 +540,6 @@ setup_conda() {
 }
 alias scd=setup_conda
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # }}} UTILITIES
