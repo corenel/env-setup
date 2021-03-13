@@ -1,7 +1,8 @@
 # CUDA {{{
 
+export GO_HOME="/usr/local/go"
 export CUDA_HOME="/usr/local/cuda"
-export PATH="${CUDA_HOME}/bin:${HOME}/.local/bin:${PATH}"
+export PATH="${GO_HOME}"/bin:"${CUDA_HOME}/bin:${HOME}/.local/bin:${PATH}"
 export C_INCLUDE_PATH="${CUDA_HOME}/include:${C_INCLUDE_PATH}"
 export CPLUS_INCLUDE_PATH="${CUDA_HOME}/include:${CPLUS_INCLUDE_PATH}"
 export CPATH="${CUDA_HOME}/include:${CPATH}"
