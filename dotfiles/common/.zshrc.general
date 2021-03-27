@@ -198,10 +198,10 @@ alias psg='ps aux | grep'
 # alias -g P="2>&1| pygmentize -l pytb"
 #
 # find
-alias fd='find . -type d -name' # find directories in current path
-alias ff='find . -type f -name' # find files in current path
-alias fdr='sudo find / -type d -name' # find directories in root path
-alias ffr='sudo find / -type f -name' # find files in root path
+# alias fd='find . -type d -name' # find directories in current path
+# alias ff='find . -type f -name' # find files in current path
+# alias fdr='sudo find / -type d -name' # find directories in root path
+# alias ffr='sudo find / -type f -name' # find files in root path
 
 # dangerous operations with prompt and verbose
 alias mv='mv -i -v'
