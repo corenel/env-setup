@@ -7,8 +7,7 @@ if [ -z $VERSION_SOURCED ]; then
   source include/version.sh
 fi
 
-prompt_default CMAKE_VERSION "CMake Major Version [${CMAKE_VERSION}]"
-prompt_default CMAKE_BUILD "CMake Build [${CMAKE_BUILD}]"
+prompt_default CMAKE_VERSION "CMake Version [${CMAKE_VERSION}]"
 
 # purge installed cmake
 if confirmation "Purge installed cmake"; then
@@ -16,16 +15,16 @@ if confirmation "Purge installed cmake"; then
 fi
 
 # install dependencies for SSL support
-sudo apt-get install zlib1g-dev # libcurl4-gnutls-dev
+sudo apt-get install zlib1g-dev libssl-dev # libcurl4-gnutls-dev
 
 # get latest cmake source
 pushd ${TMP_DIR}
-wget https://cmake.org/files/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.${CMAKE_BUILD}.tar.gz
-tar -xzvf cmake-${CMAKE_VERSION}.${CMAKE_BUILD}.tar.gz
-cd cmake-${CMAKE_VERSION}.${CMAKE_BUILD}/
+wget https://github.com/Kitware/CMake/releases/download/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.tar.gz
+tar -xzvf cmake-${CMAKE_VERSION}.tar.gz
+cd cmake-${CMAKE_VERSION}/
 
 # build cmake
-./bootstrap --system-curl # use system curl to enable SSL support
+./bootstrap --prefix=/usr/local # use system curl to enable SSL support
 make
 sudo make install
 
