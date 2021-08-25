@@ -32,7 +32,7 @@ export CUDA_HOME=/usr/local/cuda
 export GO_HOME=$HOME/go
 export CUDA_DEV_HOME=/Developer/NVIDIA/CUDA-10.0
 export DYLD_LIBRARY_PATH="$CUDA_HOME/lib:$CUDA_HOME/extras/CUPTI/lib:$CUDA_DEV_HOME/lib:$DYLD_LIBRARY_PATH"
-export PATH="$CUDA_HOME/bin:$GO_HOME/bin:$PATH"
+export PATH="$CUDA_HOME/bin:$GO_HOME/bin:/usr/local/sbin:$PATH"
 
 # }}} CUDA
 
