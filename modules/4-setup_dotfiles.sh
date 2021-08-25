@@ -110,9 +110,9 @@ init_repo() {
 
 setup_nvim() {
   pushd /tmp
-  git clone $NVIM_SETUP_REPO
+  git clone -b refactor $NVIM_SETUP_REPO
   pushd /tmp/ysvim
-  ./install.sh
+  ./install_refactored.sh
   popd
   popd
 }
