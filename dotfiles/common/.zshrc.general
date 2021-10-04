@@ -311,9 +311,22 @@ replace_encoding () {
   file_pattern=$1
   before=$2
   after=$3
-  mkdir -p converted
-  for f in `find . -name "$file_pattern"`; do
-    iconv -f $before -t $after > "converted/$f";
+  # mkdir -p converted
+  # for f in `find . -name "$file_pattern"`; do
+  #   echo $f
+  #   iconv -f $before -t $after > "converted/$f";
+  # done
+  for f in $(find . -type f -name "$file_pattern")
+  do
+    filename="${f%.*}"
+    if file -I $f | grep -wq "iso-8859-1"
+    then
+      iconv -f $before -t $after $f > "${filename}_utf8.tmp"
+      mv -f "${filename}_utf8.tmp" $f
+      echo "$f: CONVERTED TO UTF-8."
+    else
+      echo "$f: UTF-8 ALREADY."
+    fi
   done
 }
 

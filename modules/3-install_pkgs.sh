@@ -59,38 +59,125 @@ install_tpm() {
 
 install_homebrew_pkgs() {
   # pkgs
-  brew install zsh autojump tmux tmate \
-    python pip-completion \
-    watch cppcheck wget nvm gcc \
-    htop reattach-to-user-namespace \
-    ffmpeg cmake tree openssh \
-    clang-format m-cli graphviz ccat \
-    gpg rg ag ack fzf hadolint tldr
+  brew install \
+    ack \
+    ag \
+    autojump \
+    bfg \
+    ccat \
+    clang-format \
+    cmake \
+    cppcheck \
+    dos2unix \
+    ffmpeg \
+    fzf \
+    gcc \
+    go \
+    gpg \
+    graphviz \
+    gst-libav \
+    gst-plugins-bad \
+    gst-plugins-base \
+    gst-plugins-good \
+    gst-plugins-ugly \
+    gst-rtsp-server \
+    gstreamer \
+    hadolint \
+    htop \
+    iperf3 \
+    jq \
+    m-cli \
+    mosh \
+    neofetch \
+    neovim \
+    nmap \
+    node \
+    nvm \
+    opencv \
+    openssh \
+    pandoc \
+    pdsh \
+    plantuml \
+    pip-completion \
+    python \
+    reattach-to-user-namespace \
+    ripgrep \
+    smartmontools \
+    tldr \
+    tmate \
+    tmux \
+    tree \
+    universal-ctags \
+    watch \
+    wget \
+    yapf \
+    youtube-dl \
+    zsh
 
   # fzf
-  /usr/local/opt/fzf/install
-
-  # neovim
-  brew install neovim
-  brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+  # /usr/local/opt/fzf/install
 }
 
 install_homebrew_casks() {
   brew tap homebrew/cask
-  brew cask install \
-    sublime-text clion pycharm typora skim mactex \
-    xquartz docker fork iterm2 vnc-viewer \
-    imazing iina xld spotify lyricsx \
-    mounty alfred \
+  brew install --cask \
+    115browser \
+    1password \
+    adobe-creative-cloud \
+    alfred \
+    araxis-merge \
+    avira-antivirus \
+    baidunetdisk \
+    balenaetcher \
+    bob \
+    carbon-copy-cloner \
+    cyberduck \
+    devonthink \
+    docker \
+    drawio \
+    fork \
+    google-chrome \
+    gswitch \
+    iina \
+    imagej \
+    imazing \
+    intel-power-gadget \
+    iterm2 \
     karabiner-elements \
+    lyricsx \
+    mactex \
+    mathpix-snipping-tool \
+    microsoft-excel \
+    microsoft-powerpoint \
+    microsoft-word \
+    mountain-duck \
+    mounty \
+    netnewswire \
+    netron \
+    nomachine \
+    obsidian \
+    omnigraffle \
+    pdf-expert \
     setapp \
+    skim \
+    spotify \
+    sublime-text \
+    sunloginclient \
     surge \
-    google-chrome google-backup-and-sync
-    # calibre knotes imazing qbserve \
-    # intel-power-gadget
-    # hammerspoon
-    # istat-menus
-    # aria2gui transmission \
+    teamviewer \
+    tencent-meeting \
+    typora \
+    uninstallpkg \
+    visual-studio-code \
+    vlc \
+    vmware-fusion \
+    vnc-viewer \
+    wireshark \
+    xld \
+    xmind-zen \
+    xquartz \
+    zerotier-one \
+    zoom
 }
 
 install_homebrew_fonts() {
