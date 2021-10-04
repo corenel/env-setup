@@ -59,6 +59,9 @@ export TERM=screen-256color
 # export CC="ccache clang"
 export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
 
+# fix path for homebrew in apple silicon platform
+export PATH="/opt/homebrew/bin:$PATH"
+
 # Utility variables.
 if which hostname >/dev/null 2>&1; then
   HOSTNAME=`hostname`
