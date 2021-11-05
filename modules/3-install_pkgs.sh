@@ -123,10 +123,8 @@ install_homebrew_casks() {
   brew install --cask \
     115browser \
     1password \
-    adobe-creative-cloud \
     alfred \
     araxis-merge \
-    avira-antivirus \
     baidunetdisk \
     balenaetcher \
     bob \
@@ -137,14 +135,10 @@ install_homebrew_casks() {
     drawio \
     fork \
     google-chrome \
-    gswitch \
     iina \
-    imagej \
     imazing \
-    intel-power-gadget \
     iterm2 \
     karabiner-elements \
-    lyricsx \
     mactex \
     mathpix-snipping-tool \
     microsoft-excel \
@@ -153,12 +147,8 @@ install_homebrew_casks() {
     mountain-duck \
     mounty \
     netnewswire \
-    netron \
-    nomachine \
     obsidian \
-    omnigraffle \
     pdf-expert \
-    setapp \
     skim \
     spotify \
     sublime-text \
@@ -170,14 +160,12 @@ install_homebrew_casks() {
     uninstallpkg \
     visual-studio-code \
     vlc \
-    vmware-fusion \
     vnc-viewer \
     wireshark \
     xld \
     xmind-zen \
     xquartz \
-    zerotier-one \
-    zoom
+    zerotier-one
 }
 
 install_homebrew_fonts() {
