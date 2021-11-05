@@ -47,7 +47,7 @@ install_oh_my_zsh() {
 }
 
 install_zinit() {
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma-continuum/zinit/master/doc/install.sh)"
 }
 
 install_tpm() {
