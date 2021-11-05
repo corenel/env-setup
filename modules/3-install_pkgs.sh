@@ -182,7 +182,8 @@ install_homebrew_casks() {
 
 install_homebrew_fonts() {
   brew tap homebrew/cask-fonts
-  brew cask install \
+  brew install svn
+  brew install \
     font-source-code-pro \
     font-sauce-code-pro-nerd-font \
     font-fira-code font-fira-code-nerd-font font-fira-mono-nerd-font \
