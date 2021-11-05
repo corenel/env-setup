@@ -530,10 +530,12 @@ alias sv=setup_venv
 # miniconda3
 setup_conda() {
   CONDA_HOME=$HOME/miniconda3
+  [ -d $HOME/miniconda3 ] && CONDA_HOME=$HOME/miniconda3
+  [ -d /opt/homebrew/Caskroom/miniforge/base ] && CONDA_HOME=/opt/homebrew/Caskroom/miniforge/base
   # . $HOME/miniconda3/etc/profile.d/conda.sh
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$("$CONDA_HOME/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+  __conda_setup="$("$CONDA_HOME/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
   if [ $? -eq 0 ]; then
       eval "$__conda_setup"
   else
@@ -545,7 +547,7 @@ setup_conda() {
   fi
   unset __conda_setup
   # <<< conda initialize <<<
-  #
+
   alias cda="conda activate"
   alias cdd="conda deactivate"
   alias cdi="conda install"
@@ -555,6 +557,8 @@ setup_conda() {
   alias cdc="conda create"
 }
 alias scd=setup_conda
+
+# miniforge
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
