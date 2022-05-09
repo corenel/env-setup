@@ -32,6 +32,10 @@ export GO_HOME=$HOME/go
 export DYLD_LIBRARY_PATH="/opt/homebrew/lib:/usr/local/lib:/usr/lib:$DYLD_LIBRARY_PATH"
 export PATH="/opt/homebrew/bin:$CUDA_HOME/bin:$GO_HOME/bin:$PATH"
 
+#sqlite
+export SQLITE3_HOME=/opt/homebrew/opt/sqlite3/
+export DYLD_LIBRARY_PATH="${SQLITE3_HOME}/lib:$DYLD_LIBRARY_PATH"
+
 # }}} CUDA
 
 # UTILITIES {{{
