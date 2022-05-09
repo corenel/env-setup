@@ -531,7 +531,6 @@ alias sv=setup_venv
 setup_conda() {
   CONDA_HOME=$HOME/miniconda3
   [ -d $HOME/miniconda3 ] && CONDA_HOME=$HOME/miniconda3
-  [ -d /opt/homebrew/Caskroom/miniforge/base ] && CONDA_HOME=/opt/homebrew/Caskroom/miniforge/base
   # . $HOME/miniconda3/etc/profile.d/conda.sh
   # >>> conda initialize >>>
   # !! Contents within this block are managed by 'conda init' !!
