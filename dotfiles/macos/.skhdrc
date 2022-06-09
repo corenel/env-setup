@@ -14,9 +14,9 @@ shift + alt - l : yabai -m window --swap east
 
 # 移动窗口
 shift + alt + ctrl - h : yabai -m window --warp west
-shift + alt + ctrl - h : yabai -m window --warp south
-shift + alt + ctrl - h : yabai -m window --warp north
-shift + alt + ctrl - h : yabai -m window --warp east
+shift + alt + ctrl - j : yabai -m window --warp south
+shift + alt + ctrl - k : yabai -m window --warp north
+shift + alt + ctrl - l : yabai -m window --warp east
 
 # 旋转窗口布局
 alt - r : yabai -m space --rotate 90
