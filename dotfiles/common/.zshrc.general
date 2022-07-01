@@ -334,7 +334,7 @@ replace_encoding () {
 rto () {
   rflags=${@:1:-1}
   inputpath=${@: -1}
-  relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+  relpath=$(pwd | sed "s#$HOME##g")
   if [[ $inputpath == *":"* ]] ; then
     dstpath=${inputpath#*:}
     dsthost=${inputpath%:*}
