@@ -365,7 +365,7 @@ rto () {
 rfrom () {
   rflags=${@:1:-1}
   inputpath=${@: -1}
-  relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+  relpath=$(pwd | sed "s#${HOME}/##g")
   parentdir=$(dirname $(pwd))
   if [[ $inputpath == *":"* ]] ; then
     dstpath=${inputpath#*:}

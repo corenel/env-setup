@@ -66,3 +66,24 @@ resize < h : yabai -m window --resize left:100:0  ; yabai -m window --resize rig
 resize < j : yabai -m window --resize top:0:-100  ; yabai -m window --resize bottom:0:100
 resize < k : yabai -m window --resize top:0:100   ; yabai -m window --resize bottom:0:-100
 resize < l : yabai -m window --resize left:-100:0 ; yabai -m window --resize right:100:0
+
+# 切换至特定桌面
+# These commands would require diabling System Integrity Protection, but
+# instead, we can configure them as keyboard shortcuts in the System
+# Preferences.
+# alt - 1 : yabai -m space --focus 1
+# alt - 2 : yabai -m space --focus 2
+# alt - 3 : yabai -m space --focus 3
+# alt - 4 : yabai -m space --focus 4
+# alt - 5 : yabai -m space --focus 5
+# alt - 6 : yabai -m space --focus 6
+# alt - 7 : yabai -m space --focus 7
+# alt - 8 : yabai -m space --focus 8
+# alt - 9 : yabai -m space --focus 9
+
+# 切换桌面
+# These commands would require diabling System Integrity Protection, but
+# instead, we can configure them as keyboard shortcuts in the System
+# Preferences.
+# shift + alt - left : yabai -m space --focus west
+# shift + alt - right : yabai -m space --focus east
