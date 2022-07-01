@@ -334,13 +334,13 @@ replace_encoding () {
 rto () {
   rflags=${@:1:-1}
   inputpath=${@: -1}
-  relpath=$(pwd | sed "s#$HOME##g")
+  relpath=$(pwd | sed "s#$HOME/##g")
   if [[ $inputpath == *":"* ]] ; then
     dstpath=${inputpath#*:}
     dsthost=${inputpath%:*}
     [[ ! " ${rflags[@]} " =~ " -q " ]] && _log_status "Rsync $relpath to $dsthost:$dstpath ..."
   else
-    dstpath=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
+    dstpath=$(dirname $(pwd) | sed "s#$HOME/##g")
     dsthost=${inputpath}
     [[ ! " ${rflags[@]} " =~ " -q " ]] && _log_status "Rsync $relpath to $dsthost:$relpath ..."
   fi
