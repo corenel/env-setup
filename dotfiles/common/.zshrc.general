@@ -335,14 +335,17 @@ rto () {
   rflags=${@:1:-1}
   inputpath=${@: -1}
   relpath=$(pwd | sed "s#$HOME/##g")
+  [[ "x$relpath" == "x$HOME" ]] && relpath=""
   if [[ $inputpath == *":"* ]] ; then
     dstpath=${inputpath#*:}
     dsthost=${inputpath%:*}
     [[ ! " ${rflags[@]} " =~ " -q " ]] && _log_status "Rsync $relpath to $dsthost:$dstpath ..."
   else
     dstpath=$(dirname $(pwd) | sed "s#$HOME/##g")
+    [[ "x$dstpath" == "x$HOME" ]] && dstpath=""
     dsthost=${inputpath}
     [[ ! " ${rflags[@]} " =~ " -q " ]] && _log_status "Rsync $relpath to $dsthost:$relpath ..."
+    echo $dstpath
   fi
 
   if [[ ! " ${rflags[@]} " =~ " -q " ]]; then
@@ -366,6 +369,7 @@ rfrom () {
   rflags=${@:1:-1}
   inputpath=${@: -1}
   relpath=$(pwd | sed "s#${HOME}/##g")
+  [[ "x$relpath" == "x$HOME" ]] && relpath=""
   parentdir=$(dirname $(pwd))
   if [[ $inputpath == *":"* ]] ; then
     dstpath=${inputpath#*:}
