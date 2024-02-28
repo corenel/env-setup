@@ -36,6 +36,7 @@ yabai -m config right_padding                15
 yabai -m config window_gap                   15
 
 # 忽略的 app
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Information$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
@@ -45,7 +46,16 @@ yabai -m rule --add app="^Surge$" manage=off
 yabai -m rule --add app="^Jump Desktop Connect$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^Stage1st$" manage=off
+yabai -m rule --add app="^Tweetbot$" manage=off
+yabai -m rule --add app="^Twitter$" manage=off
+yabai -m rule --add app="^Telegram$" manage=off
+yabai -m rule --add app="^1Password$" manage=off
 yabai -m rule --add app="^Bartender 4$" manage=off
 yabai -m rule --add app="^Raycast Preferences$" manage=off
+yabai -m rule --add app="^iTerm2$" manage=off
+yabai -m rule --add app="^微信$" manage=off
+yabai -m rule --add app="^钉钉$" manage=off
+yabai -m rule --add app="^NoMachine$" manage=off
+yabai -m rule --add app="^Rewind$" manage=off
 
 echo "yabai configuration loaded.."
