@@ -30,7 +30,7 @@ alias bcu='brew cask outdated | xargs brew reinstall'
 
 export GO_HOME=$HOME/go
 export DYLD_LIBRARY_PATH="/opt/homebrew/lib:/usr/local/lib:/usr/lib:$DYLD_LIBRARY_PATH"
-export PATH="/opt/homebrew/bin:$CUDA_HOME/bin:$GO_HOME/bin:$PATH"
+export PATH="/opt/homebrew/bin:$CUDA_HOME/bin:$GO_HOME/bin:$HOME/.local/bin:$PATH"
 
 #sqlite
 export SQLITE3_HOME=/opt/homebrew/opt/sqlite3/
@@ -65,5 +65,8 @@ export PATH="$PATH:/Library/TeX/texbin"
 
 # modules
 # [ -f /usr/local/opt/modules/init/zsh ] && source /usr/local/opt/modules/init/zsh
+
+# fabric
+if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
 
 # }}} UTILITIES

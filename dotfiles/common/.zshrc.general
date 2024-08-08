@@ -565,4 +565,12 @@ alias scd=setup_conda
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# pyenv
+setup_pyenv() {
+  export PYENV_ROOT="$HOME/.pyenv"
+  [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+}
+alias spv=setup_pyenv
+
 # }}} UTILITIES

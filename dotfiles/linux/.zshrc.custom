@@ -30,10 +30,9 @@ alias di='sudo dpkg -i'
 # ROS {{{
 setup_ros()
 {
-  export DEFAULT_ROS_DISTRO=melodic
+  export DEFAULT_ROS_DISTRO=noetic
 
   [ -z $ROS_DISTRO ] && [ -f /opt/ros/${DEFAULT_ROS_DISTRO}/setup.zsh ] && source /opt/ros/${DEFAULT_ROS_DISTRO}/setup.zsh
-  [ -f $HOME/dancer-workspace/.zshrc.dancer ] && source $HOME/dancer-workspace/.zshrc.dancer
   export ROSCONSOLE_FORMAT='[${severity}][${time}][${node}:${logger}]: ${message}'
 
   alias rcd='roscd'
@@ -48,6 +47,13 @@ setup_ros()
   alias rlog="sudo vim ${ROS_ROOT}/config/rosconsole.config"
 }
 alias sr=setup_ros
+
+setup_ros2() {
+  export ROS2_DISTRO=humble
+  [ -f /opt/ros/${ROS2_DISTRO}/install/setup.zsh ] && source /opt/ros/${ROS2_DISTRO}/install/setup.zsh
+  [ -f /Users/yuthon/Workspace/zw/zw_ws/install/setup.zsh ] && source /Users/yuthon/Workspace/zw/zw_ws/install/setup.zsh
+}
+alias sr2=setup_ros2
 
 # }}} ROS
 

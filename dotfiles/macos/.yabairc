@@ -46,6 +46,8 @@ yabai -m rule --add app="^Surge$" manage=off
 yabai -m rule --add app="^Jump Desktop Connect$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
 yabai -m rule --add app="^Stage1st$" manage=off
+yabai -m rule --add app="^论坛助手$" manage=off
+yabai -m rule --add app="^微信读书$" manage=off
 yabai -m rule --add app="^Tweetbot$" manage=off
 yabai -m rule --add app="^Twitter$" manage=off
 yabai -m rule --add app="^Telegram$" manage=off
