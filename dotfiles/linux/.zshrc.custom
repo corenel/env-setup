@@ -59,4 +59,7 @@ alias sr2=setup_ros2
 
 # CUSTOM {{{
 
+# OrbStack
+export PATH=/opt/orbstack-guest/bin:/opt/orbstack-guest/bin-hiprio:$PATH
+
 # }}} CUSTOM
