@@ -1,8 +1,9 @@
 # CUDA {{{
 
 export GO_HOME="/usr/local/go"
+export GO_USER_HOME="$HOME/go"
 export CUDA_HOME="/usr/local/cuda"
-export PATH="${GO_HOME}"/bin:"${CUDA_HOME}/bin:${HOME}/.local/bin:${PATH}"
+export PATH="${GO_HOME}/bin:${GO_USER_HOME}/bin:${CUDA_HOME}/bin:${HOME}/.local/bin:${PATH}"
 export C_INCLUDE_PATH="${CUDA_HOME}/include:${C_INCLUDE_PATH}"
 export CPLUS_INCLUDE_PATH="${CUDA_HOME}/include:${CPLUS_INCLUDE_PATH}"
 export CPATH="${CUDA_HOME}/include:${CPATH}"
@@ -59,7 +60,15 @@ alias sr2=setup_ros2
 
 # CUSTOM {{{
 
+# PaddlePaddle
+export PADDLE_INFERENCE_ROOT=/usr/local/paddle_inference_install_dir
+export LD_LIBRARY_PATH=${PADDLE_INFERENCE_ROOT}/paddle/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=${PADDLE_INFERENCE_ROOT}/third_party/install/xpu/lib:$LD_LIBRARY_PATH
+
 # OrbStack
 export PATH=/opt/orbstack-guest/bin:/opt/orbstack-guest/bin-hiprio:$PATH
+
+# fabric
+if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
 
 # }}} CUSTOM
