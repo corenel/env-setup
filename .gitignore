@@ -10,3 +10,4 @@
 .aria2/*.session
 .idea
 .tags
+dotfiles/common/.zshrc.local

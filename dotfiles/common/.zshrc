@@ -26,5 +26,12 @@
 
 # }}} CUSTOM_CONFIG
 
+# LOCAL CONFIG {{{
+
+# load specific config
+[ -f $HOME/.zshrc.local ] && source $HOME/.zshrc.local
+
+# }}} LOCAL_CONFIG
+
 # Don't end with errors.
 true
