@@ -69,4 +69,7 @@ export PATH="$PATH:/Library/TeX/texbin"
 # fabric
 if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
 
+# LM Studio CLI (lms)
+export PATH="$PATH:/Users/yuthon/.cache/lm-studio/bin"
+
 # }}} UTILITIES

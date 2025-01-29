@@ -59,5 +59,6 @@ yabai -m rule --add app="^微信$" manage=off
 yabai -m rule --add app="^钉钉$" manage=off
 yabai -m rule --add app="^NoMachine$" manage=off
 yabai -m rule --add app="^Rewind$" manage=off
+yabai -m rule --add app="^Windows App$" manage=off
 
 echo "yabai configuration loaded.."
