@@ -233,3 +233,50 @@ k = 'resize height -50'
 l = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
+
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = 'main'
+3 = ['secondary', 'main']
+4 = ['secondary', 'main']
+5 = 'main'
+
+[[on-window-detected]]
+    if.app-id = 'com.googlecode.iterm2'
+    check-further-callbacks = true
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'md.obsidian'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'Cursor'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+    if.app-id = 'com.google.Chrome'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+    if.app-id = 'com.devon-technologies.think3'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = 'com.binarynights.forklift-setapp'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = '5ZSL2CJU2T.com.dingtalk.mac'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+    if.app-id = 'com.tencent.xinWeChat'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 5'
