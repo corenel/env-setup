@@ -262,7 +262,8 @@ esc = 'mode main'
     run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-    if.app-id = 'com.devon-technologies.think3'
+    # if.app-id = 'com.devon-technologies.think3'
+    if.app-id = 'com.devon-technologies.think'
     check-further-callbacks = true
     run = 'move-node-to-workspace 4'
 
