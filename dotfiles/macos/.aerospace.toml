@@ -238,11 +238,17 @@ esc = 'mode main'
 1 = 'main'
 2 = 'main'
 3 = ['secondary', 'main']
-4 = ['secondary', 'main']
-5 = 'main'
+4 = [3, 'secondary', 'main']
+5 = [3, 'secondary', 'main']
+6 = [3, 'secondary', 'main']
 
 [[on-window-detected]]
     if.app-id = 'com.googlecode.iterm2'
+    check-further-callbacks = true
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'abnerworks.Typora'
     check-further-callbacks = true
     run = ['layout floating']
 
@@ -269,6 +275,16 @@ esc = 'mode main'
 
 [[on-window-detected]]
     if.app-id = 'com.binarynights.forklift-setapp'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = 'com.sublimetext.4'
+    check-further-callbacks = true
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = 'com.kleneway.pastemax'
     check-further-callbacks = true
     run = 'move-node-to-workspace 4'
 
