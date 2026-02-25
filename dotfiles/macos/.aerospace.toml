@@ -242,6 +242,10 @@ esc = 'mode main'
 # Monitor Set 2:
 # 1 | L: BenQ EW3270U
 # 2 | R: LG 28MQ780
+#
+# Monitor Set 3:
+# 1 | Built-in Retina Display
+# 2 | CFORCE
 [workspace-to-monitor-force-assignment]
 1 = 'main'
 2 = 'main'
@@ -249,6 +253,7 @@ esc = 'mode main'
 4 = ['40C1U \(2\)', 'LG 28MQ780', 'secondary', 'main']
 5 = ['40C1U \(2\)', 'LG 28MQ780', 'secondary', 'main']
 6 = ['40C1U \(2\)', 'LG 28MQ780', 'secondary', 'main']
+9 = ['DELL U2720QM', 'secondary', 'main']
 
 [[on-window-detected]]
     if.app-id = 'com.googlecode.iterm2'
