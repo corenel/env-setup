@@ -72,4 +72,10 @@ export PATH=/opt/orbstack-guest/bin:/opt/orbstack-guest/bin-hiprio:$PATH
 # fabric
 if [ -f "$HOME/.config/fabric/fabric-bootstrap.inc" ]; then . "$HOME/.config/fabric/fabric-bootstrap.inc"; fi
 
+# nvm
+if [ -f "/home/yuthon/.config/fabric/fabric-bootstrap.inc" ]; then . "/home/yuthon/.config/fabric/fabric-bootstrap.inc"; fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # }}} CUSTOM
