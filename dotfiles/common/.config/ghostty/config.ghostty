@@ -1,10 +1,52 @@
-# Setup theme
+# Appearance
+# Follow the OS light/dark mode with the bundled Gruvbox Material themes.
 theme = light:gruvbox-material-hard-light,dark:gruvbox-material-hard-dark
+font-family = MesloLGMDZNFM-Regular
+font-style = Bold
+font-style-bold = ExtraBold
+font-style-italic = Bold Italic
+font-style-bold-italic = ExtraBold Italic
+font-size = 14
 
-# Setup hotkey window
+# Disable contextual alternates and ligatures for predictable terminal glyphs.
+font-feature = -calt, -liga, -dlig
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+cursor-color = white
+cursor-text = black
+cursor-opacity = 0.5
+
+# Mouse and focus
+mouse-hide-while-typing = true
+focus-follows-mouse = true
+right-click-action = ignore
+
+# Shell integration
+shell-integration-features = no-cursor, sudo, ssh-env, ssh-terminfo, path
+
+# Scrollback and links
+scrollbar = never
+scrollback-limit = 20000000
+link-previews = false
+
+# Command completion notifications
+# Requires shell integration or OSC 133 command markers.
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 30s
+
+# Window and surface behavior
+confirm-close-surface = false
+
+# Quick terminal
 keybind = "global:shift+space=toggle_quick_terminal"
+quick-terminal-position = top
+quick-terminal-autohide = false
 
-# Allow OSC52 clipboard access
+# Clipboard
+# Allow OSC52 clipboard access.
 copy-on-select = clipboard
 clipboard-read = allow
 clipboard-write = allow
