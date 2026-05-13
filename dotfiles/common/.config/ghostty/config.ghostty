@@ -1,11 +1,8 @@
 # Appearance
 # Follow the OS light/dark mode with the bundled Gruvbox Material themes.
-theme = light:gruvbox-material-hard-light,dark:gruvbox-material-hard-dark
-font-family = MesloLGMDZNFM-Regular
-font-style = Bold
-font-style-bold = ExtraBold
-font-style-italic = Bold Italic
-font-style-bold-italic = ExtraBold Italic
+theme = gruvbox-material-hard-dark
+font-family = "MesloLGLDZ Nerd Font"
+# font-family = "FiraCode Nerd Font"
 font-size = 14
 
 # Disable contextual alternates and ligatures for predictable terminal glyphs.
