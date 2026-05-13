@@ -1,2 +1,10 @@
+# Setup theme
 theme = light:gruvbox-material-hard-light,dark:gruvbox-material-hard-dark
+
+# Setup hotkey window
 keybind = "global:shift+space=toggle_quick_terminal"
+
+# Allow OSC52 clipboard access
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow
