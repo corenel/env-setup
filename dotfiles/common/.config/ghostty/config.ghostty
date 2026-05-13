@@ -1,0 +1,2 @@
+theme = light:gruvbox-material-hard-light,dark:gruvbox-material-hard-dark
+keybind = "global:shift+space=toggle_quick_terminal"

@@ -310,3 +310,7 @@ esc = 'mode main'
     if.app-id = 'com.tencent.xinWeChat'
     check-further-callbacks = true
     run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+    if.app-id = "com.mitchellh.ghostty"
+    run = ["layout floating", "fullscreen"]
