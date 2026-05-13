@@ -17,56 +17,93 @@ symlink() {
   src=$1
   dst=$2
 
-  if [ -e ${dst} ]; then
-    if [ -L ${dst} ]; then
+  if [ -e "${dst}" ]; then
+    if [ -L "${dst}" ]; then
       # Already symlinked -- I'll assume correctly.
       return
     else
       # Rename files with a ".old" extension.
       echo "$dst already exists, renaming to $dst.old"
       backup=${dst}.old
-      if [ -e ${backup} ]; then
+      if [ -e "${backup}" ]; then
         echo "Error: $backup already exists. Please delete or rename it."
         exit 1
       fi
-      mv -v ${dst} ${backup}
+      mv -v "${dst}" "${backup}"
     fi
   fi
-  ln -sfn ${src} ${dst}
+  ln -sfn "${src}" "${dst}"
+}
+
+link_xdg_config_dotfiles() {
+  local BASE_DIR=$1
+  local CONFIG_DIR="${BASE_DIR}/.config"
+  local TARGET_CONFIG_DIR="${HOME}/.config"
+
+  if [ ! -d "${CONFIG_DIR}" ]; then
+    return
+  fi
+
+  if [ -e "${TARGET_CONFIG_DIR}" ] || [ -L "${TARGET_CONFIG_DIR}" ]; then
+    if [ ! -d "${TARGET_CONFIG_DIR}" ]; then
+      echo "Error: ${TARGET_CONFIG_DIR} already exists and is not a directory."
+      exit 1
+    fi
+  else
+    mkdir -p "${TARGET_CONFIG_DIR}"
+  fi
+
+  pushd "${CONFIG_DIR}"
+  for path in * .*; do
+    case ${path} in
+    . | ..)
+      continue
+      ;;
+    esac
+
+    if [ ! -e "${path}" ] && [ ! -L "${path}" ]; then
+      continue
+    fi
+
+    symlink "${CONFIG_DIR}/${path}" "${TARGET_CONFIG_DIR}/${path}"
+  done
+  popd
 }
 
 link_dotfiles() {
   local BASE_DIR=$1
 
-  pushd ${BASE_DIR}
+  pushd "${BASE_DIR}"
   for path in .*; do
     case ${path} in
-    . | .. )
+    . | .. | .config)
       continue
       ;;
     *)
-      symlink ${BASE_DIR}/${path} $HOME/${path}
+      symlink "${BASE_DIR}/${path}" "${HOME}/${path}"
       ;;
     esac
   done
   popd
+  link_xdg_config_dotfiles "${BASE_DIR}"
 }
 
 link_common_dotfiles() {
   # create symbol links from $basedir to $HOME
-  pushd ${DOTFILE_BASEDIR}/common
+  pushd "${DOTFILE_BASEDIR}/common"
   status "Creating symlinks..."
   for path in .*; do
     case ${path} in
-    . | .. | .git | .gitignore | .gitignore.example | .gitconfig.example | .ssh)
+    . | .. | .config | .git | .gitignore | .gitignore.example | .gitconfig.example | .ssh)
       continue
       ;;
     *)
-      symlink ${DOTFILE_BASEDIR}/common/${path} $HOME/${path}
+      symlink "${DOTFILE_BASEDIR}/common/${path}" "${HOME}/${path}"
       ;;
     esac
   done
   popd
+  link_xdg_config_dotfiles "${DOTFILE_BASEDIR}/common"
 
   # init global gitconfig and gitignore
   cp -v "$DOTFILE_BASEDIR/common/.gitconfig.example" "$HOME/.gitconfig"
@@ -78,11 +115,11 @@ link_common_dotfiles() {
 }
 
 link_linux_dotfiles() {
-  link_dotfiles ${DOTFILE_BASEDIR}/linux
+  link_dotfiles "${DOTFILE_BASEDIR}/linux"
 }
 
 link_macos_dotfiles() {
-  link_dotfiles ${DOTFILE_BASEDIR}/macos
+  link_dotfiles "${DOTFILE_BASEDIR}/macos"
 }
 
 init_repo() {
