@@ -34,7 +34,14 @@ setup_ros()
 {
   export DEFAULT_ROS_DISTRO=noetic
 
-  [ -z $ROS_DISTRO ] && [ -f /opt/ros/${DEFAULT_ROS_DISTRO}/setup.zsh ] && source /opt/ros/${DEFAULT_ROS_DISTRO}/setup.zsh
+  if [ -z "$ROS_DISTRO" ]; then
+    if [ -f /opt/ros/${DEFAULT_ROS_DISTRO}/install/setup.zsh ]; then
+      source /opt/ros/${DEFAULT_ROS_DISTRO}/install/setup.zsh
+    elif [ -f /opt/ros/${DEFAULT_ROS_DISTRO}/setup.zsh ]; then
+      source /opt/ros/${DEFAULT_ROS_DISTRO}/setup.zsh
+    fi
+  fi
+
   export ROSCONSOLE_FORMAT='[${severity}][${time}][${node}:${logger}]: ${message}'
 
   alias rcd='roscd'
@@ -52,8 +59,11 @@ alias sr=setup_ros
 
 setup_ros2() {
   export ROS2_DISTRO=humble
-  [ -f /opt/ros/${ROS2_DISTRO}/install/setup.zsh ] && source /opt/ros/${ROS2_DISTRO}/install/setup.zsh
-  [ -f /Users/yuthon/Workspace/zw/zw_ws/install/setup.zsh ] && source /Users/yuthon/Workspace/zw/zw_ws/install/setup.zsh
+  if [ -f /opt/ros/${ROS2_DISTRO}/install/setup.zsh ]; then
+    source /opt/ros/${ROS2_DISTRO}/install/setup.zsh
+  elif [ -f /opt/ros/${ROS2_DISTRO}/setup.zsh ]; then
+    source /opt/ros/${ROS2_DISTRO}/setup.zsh
+  fi
 }
 alias sr2=setup_ros2
 
