@@ -120,8 +120,8 @@ navigate_pane_down = "j"
 navigate_pane_up = "k"
 navigate_pane_right = "l"
 
-previous_workspace = "prefix+shift+left"
-next_workspace = "prefix+shift+right"
+previous_workspace = "prefix+ctrl+b"
+next_workspace = "prefix+ctrl+f"
 
 # Agent-panel navigation.
 previous_agent = "prefix+u"
