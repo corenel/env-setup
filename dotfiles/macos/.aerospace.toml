@@ -314,4 +314,9 @@ esc = 'mode main'
 [[on-window-detected]]
     if.app-id = "com.mitchellh.ghostty"
     # run = ["layout floating", "fullscreen"]
+    run = ['layout floating', 'move-node-to-workspace 9']
+
+[[on-window-detected]]
+    if.app-id = 'com.wails.Yansu'
+    check-further-callbacks = true
     run = ['layout floating']
