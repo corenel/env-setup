@@ -96,7 +96,7 @@ help = "prefix+?"
 settings = "prefix+comma"
 # Preserve the supplied tmux muscle memory.
 reload_config = "prefix+r"
-detach = ["prefix+ctrl+d", "prefix+q"]
+detach = ["prefix+d", "prefix+q"]
 
 # Workspace = project/repo/task.
 new_workspace = "prefix+shift+n"
@@ -124,8 +124,8 @@ previous_workspace = "prefix+ctrl+b"
 next_workspace = "prefix+ctrl+f"
 
 # Agent-panel navigation.
-previous_agent = "prefix+u"
-next_agent = "prefix+d"
+previous_agent = "prefix+ctrl+u"
+next_agent = "prefix+ctrl+d"
 focus_agent = "prefix+alt+1..9"
 open_notification_target = ""
 
