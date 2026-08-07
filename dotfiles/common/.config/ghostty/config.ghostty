@@ -1,8 +1,11 @@
 # Appearance
 # Follow the OS light/dark mode with the bundled Gruvbox Material themes.
 theme = gruvbox-material-hard-dark
-font-family = "MesloLGLDZ Nerd Font"
+# Latin/programming primary font.
 # font-family = "FiraCode Nerd Font"
+font-family = "MesloLGLDZ Nerd Font"
+# Explicit macOS Simplified Chinese fallback.
+font-family = "PingFang SC"
 font-size = 14
 
 # Disable contextual alternates and ligatures for predictable terminal glyphs.
